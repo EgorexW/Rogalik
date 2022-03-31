@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5447483164105950509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5447483164105950508}
+  - component: {fileID: 5447483164105950507}
+  - component: {fileID: 5447483164105950506}
+  m_Layer: 3
+  m_Name: RoomType
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5447483164105950508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447483164105950509}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5447483164105950507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447483164105950509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd622d5b8f0a25a429aa9597d1bb347a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: 0
+  connections: []
+  rooms:
+  - {fileID: 3729211208440693289, guid: 4c460a57ac910734fa64a9c521dd6e6e, type: 3}
+  - {fileID: 7255108825531843477, guid: 81a91a66b01ccf54599ef158fc6361ae, type: 3}
+  - {fileID: 4483104514684261629, guid: 86c6b7dc8d01d474b8b05cddc62434d1, type: 3}
+  - {fileID: 4483104514684261629, guid: aff3d51ea525c49449bed5267c4b1894, type: 3}
+  - {fileID: 1597945770952585673, guid: e2d8256a52fc25b4e9a3e49b0c4fda8b, type: 3}
+  - {fileID: 1597945770952585673, guid: 75bfd150968f14d4ebbc45a86f336249, type: 3}
+  - {fileID: 1597945770952585673, guid: f3f1cd0328de26447a0f48fcfdff5a52, type: 3}
+  - {fileID: 1597945770952585673, guid: 75166644239c9ae498ecc763f1e00bb1, type: 3}
+--- !u!61 &5447483164105950506
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5447483164105950509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
