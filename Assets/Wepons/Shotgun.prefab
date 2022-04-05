@@ -50,7 +50,7 @@ MonoBehaviour:
   critChance: 50
   fireLayerMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 328
   ammo: 5
   sprite: {fileID: 21300000, guid: 2413f6bcfee430b49a7ab756fc6241c6, type: 3}
   weaponType: 1

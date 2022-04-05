@@ -25,8 +25,9 @@ public class Weapon : MonoBehaviour
         }
         if (raycats.transform.tag == "Player" || raycats.transform.tag == "Character"){
             raycats.transform.GetComponent<CharacterObject>().Damage(damage);
-            if (Random.Range(1, 100) <= critChance){
+            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().resistance){
                 raycats.transform.GetComponent<CharacterObject>().ApplyStatusEffect(StatusEffect.Stunned);
+                raycats.transform.GetComponent<CharacterObject>().ApplyStatusEffect(StatusEffect.Crit);
             }
             if (raycats.transform == null){
                 return "Kill";

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public string Type;
+    public RoomTemplateType type;
+    public EventType eventType = EventType.Empty;
 }
