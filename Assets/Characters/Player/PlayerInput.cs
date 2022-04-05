@@ -59,11 +59,9 @@ public class PlayerInput : CharacterObject
     }
 
     public override void Damage(int damage){
-        shield -= damage;
-        if (shield < 0){
-            health += shield;
-            shield = 0;
-        }
+        health += Mathf.Min(shield, damage);
+        shield -= Mathf.Min(shield, damage);
+        base.Damage(damage);
         StatsUI.GetComponent<StatsUI>().UpdateStatsHealthUI(health);
         StatsUI.GetComponent<StatsUI>().UpdateStatsShieldUI(shield);
         if (health <= 0){

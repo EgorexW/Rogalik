@@ -136,7 +136,7 @@ MonoBehaviour:
   onTurn: 0
   health: 25
   statusEffects: 
-  resistance: 0
+  resistance: 20
   shield: 10
   maxShield: 10
   maxHealth: 50

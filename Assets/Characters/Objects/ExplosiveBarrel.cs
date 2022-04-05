@@ -31,8 +31,8 @@ public class ExplosiveBarrel : CharacterObject
         }
         foreach (GameObject target in targets)
         {
-            target.GetComponent<CharacterObject>().Damage(damage);
             target.GetComponent<CharacterObject>().ApplyStatusEffect(statusEffect);
+            target.GetComponent<CharacterObject>().Damage(damage);
         }
         Destroy(gameObject);
     }

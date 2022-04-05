@@ -28,7 +28,6 @@ public static class StatusEffects
             if (statusEffects.Contains(StatusEffect.Sharpened)){
                 gameObject.GetComponent<CharacterObject>().Damage(99999);
             }
-            statusEffects.Remove(StatusEffect.Crit);
         }
     }
 }

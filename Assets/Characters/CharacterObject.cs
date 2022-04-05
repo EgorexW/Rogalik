@@ -19,6 +19,8 @@ public class CharacterObject : MonoBehaviour
     }
 
     public virtual void Damage(int damage){
+        DamagePopup.Create(transform.position, damage, statusEffects.Contains(StatusEffect.Crit));
+        statusEffects.RemoveAll(status => status == StatusEffect.Crit);
         health -= damage;
         if (health <= 0){
             Die();
