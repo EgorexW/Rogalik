@@ -56,6 +56,9 @@ public class PlayerInput : CharacterObject
                 statusEffectsCheck = false;
             }
         }
+        if (Input.GetButtonDown("Reload Scene")){
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(true);
+        }
     }
 
     public override void Damage(int damage){

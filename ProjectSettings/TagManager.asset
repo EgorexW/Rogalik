@@ -8,6 +8,7 @@ TagManager:
   - WorldGridMap
   - Room
   - Weapon
+  - GameManager
   layers:
   - Default
   - TransparentFX

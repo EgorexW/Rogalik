@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelGeneration : MonoBehaviour
 {
@@ -27,13 +26,6 @@ public class LevelGeneration : MonoBehaviour
     void Start()
     {
         GenerateRooms();
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Reload Scene")){
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
 
     void GenerateRooms()
@@ -76,11 +68,6 @@ public class LevelGeneration : MonoBehaviour
             Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomLayer);
             if (roomDetection == null || roomDetection.gameObject.GetComponent<RoomType>().roomType != 0)
             {
-                if (directions.Count <= 1)
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                    break;
-                }
                 directions.Remove(direction);
                 removedDirections.Add(direction);
                 transform.position = previousPosition;

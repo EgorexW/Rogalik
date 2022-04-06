@@ -48,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
             PM.dir = new Vector2(x, y);
             Rotate(new Vector2(x, y));
             return true;
+        } else if (moveDetection.tag == "Respawn"){
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(false);
         }
         return false;
     }
