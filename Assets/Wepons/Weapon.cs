@@ -8,13 +8,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int critChance;
 
-    [SerializeField] LayerMask fireLayerMask;
+    [SerializeField] protected LayerMask fireLayerMask;
 
     public int ammo;
     public Sprite sprite;
     public WeaponTypes weaponType;
     
-    public string Fire(Vector2 dir){
+    public virtual string Fire(Vector2 dir){
         if (ammo <= 0){
             return "Miss";
         }

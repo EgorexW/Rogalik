@@ -77,6 +77,9 @@ public class LevelGeneration : MonoBehaviour
                 }
                 continue;
             }
+            if (directions.Count <= 1){
+                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(true);
+            }
             foreach (Vector3 dirToAdd in removedDirections)
             {
                 directions.Add(dirToAdd);

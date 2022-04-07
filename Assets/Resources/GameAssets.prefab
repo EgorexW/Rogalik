@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePopup: {fileID: 389115178314932382, guid: 1214a26c242cf2f4d9f050b203745b09, type: 3}
+  sharpenedSprite: {fileID: 21300000, guid: 423fa9c78167ab846bb1d49ad86f0bbf, type: 3}
