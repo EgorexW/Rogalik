@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private static GameManager _instance;
+    private static GameManager instance;
+
+    public int level { get; private set; } = 1;
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         } else {
-            _instance = this;
+            instance = this;
         }
         DontDestroyOnLoad(gameObject);
     }
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             return;
         }
+        level ++; 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     PlayerMain PM;
 
-    void Start(){
+    public void Start(){
         CM = GameObject.FindGameObjectWithTag("MainCamera");
         CM.transform.position = transform.position;
         CM.transform.position += new Vector3(0, 0, -10);

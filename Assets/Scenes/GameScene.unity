@@ -1374,12 +1374,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsNr: 25
-  enemyPods:
-  - {fileID: 960603061493072204, guid: 7800c767778da4c4bbe7e19d7f84fd41, type: 3}
-  podsMin: 5
-  podsMax: 8
+  enemyPod: {fileID: 960603061493072204, guid: 7800c767778da4c4bbe7e19d7f84fd41, type: 3}
+  podsMin: 3
+  podsMax: 5
   roomSize: 12
   spawnOffset: 3
+  podsIncresePerLevel: 0.5
 --- !u!114 &692313913
 MonoBehaviour:
   m_ObjectHideFlags: 0

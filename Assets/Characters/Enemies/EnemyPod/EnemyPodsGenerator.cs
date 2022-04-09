@@ -7,11 +7,12 @@ public class EnemyPodsGenerator : MonoBehaviour
     List<GameObject> rooms;
 
     [SerializeField] int roomsNr;
-    [SerializeField] GameObject[] enemyPods;
+    [SerializeField] GameObject enemyPod;
     [SerializeField] int podsMin;
     [SerializeField] int podsMax;
     [SerializeField] int roomSize;
     [SerializeField] int spawnOffset;
+    [SerializeField] float podsIncresePerLevel;
 
     void Update(){
         rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
@@ -23,8 +24,10 @@ public class EnemyPodsGenerator : MonoBehaviour
     }
 
     void GeneratePods(){
+        int level = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().level;
+        int podsIncrese = (int) Mathf.Floor(podsIncresePerLevel * level);
         List<GameObject> toUse = new List<GameObject>();
-        int podsNr = Random.Range(podsMin, podsMax);
+        int podsNr = Random.Range(podsMin + podsIncrese, podsMax + podsIncrese);
         while (toUse.Count < podsNr){
             GameObject room = rooms[Random.Range(0, rooms.Count - 1)];
             if (room.GetComponent<Room>().type == RoomTemplateType.Enter || room.GetComponent<Room>().type == RoomTemplateType.Closed){
@@ -33,6 +36,9 @@ public class EnemyPodsGenerator : MonoBehaviour
             else{
                 rooms.Remove(room);
                 toUse.Add(room);
+            }
+            if (rooms.Count <= 0){
+                podsNr = toUse.Count;
             }
         }
         foreach(GameObject room in toUse) {
@@ -58,7 +64,7 @@ public class EnemyPodsGenerator : MonoBehaviour
                 }
             }
             // Debug.Log(avaliableLocations.Count);
-            Instantiate(enemyPods[Random.Range(0, enemyPods.Length - 1)], avaliableLocations[Random.Range(0, avaliableLocations.Count - 1)], Quaternion.identity);
+            Instantiate(enemyPod, avaliableLocations[Random.Range(0, avaliableLocations.Count - 1)], Quaternion.identity);
         }
     }
     

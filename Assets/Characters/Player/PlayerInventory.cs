@@ -12,7 +12,9 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] LayerMask itemLayer;
 
-    void Start(){
+    int dropNr = 1;
+
+    public void Start(){
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GameController");
         WeaponUI1 = gameObjects[0].GetComponent<UIManager>().WeaponUI1;
         WeaponUI2 = gameObjects[0].GetComponent<UIManager>().WeaponUI2;
@@ -53,5 +55,7 @@ public class PlayerInventory : MonoBehaviour
         item.GetComponent<SpriteRenderer>().enabled = true;
         item.GetComponent<BoxCollider2D>().enabled = true;
         item.transform.rotation = Quaternion.identity;
+        item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, dropNr);
+        dropNr ++;
     }
 }

@@ -16,7 +16,7 @@ public class PlayerInput : CharacterObject
 
     bool statusEffectsCheck = false;
 
-    void Start() {
+    public void Start() {
         Register();
         pM = GetComponent<PlayerMovement>();
         pI = GetComponent<PlayerInventory>();

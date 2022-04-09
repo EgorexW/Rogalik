@@ -205,6 +205,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: {x: 0, y: 0}
+  pInp: {fileID: 7070837806305188972}
+  pInv: {fileID: -2775962809729801485}
+  pM: {fileID: 7194398213508065301}
 --- !u!114 &7070837806305188972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,10 +225,6 @@ MonoBehaviour:
   health: 25
   statusEffects: 
   resistance: 20
-  statusIcons:
-  - {fileID: 1767339945091258572}
-  - {fileID: 5663198975985873714}
-  - {fileID: 9119737586542991876}
   shield: 10
   maxShield: 10
   maxHealth: 50
