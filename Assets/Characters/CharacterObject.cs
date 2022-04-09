@@ -10,8 +10,6 @@ public class CharacterObject : MonoBehaviour
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
     public int resistance;
 
-    // [SerializeField] GameObject[] statusIcons;
-
     protected TurnController turnController;
 
     protected void Register() {

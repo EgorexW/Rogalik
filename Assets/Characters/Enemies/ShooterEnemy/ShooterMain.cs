@@ -19,6 +19,7 @@ public class ShooterMain : CharacterObject
         movement = GetComponent<ShooterMovement>();
         targeting = GetComponent<ShooterTargeting>();
         attack = GetComponent<ShooterAttack>();
+        // StatusIcon.Create(transform, true, StatusEffect.Sharpened);
     }
     void Update(){
         // Debug.Log("Current turn= " + turnController.currentTurn);

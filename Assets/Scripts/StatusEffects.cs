@@ -29,17 +29,8 @@ public static class StatusEffects
                 gameObject.GetComponent<CharacterObject>().Damage(99999);
             }
         }
-    }
-
-    public static Sprite[] GetSprites(GameObject gameObject){
-        List<Sprite> sprites = new List<Sprite>();
-        foreach (StatusEffect status in gameObject.GetComponent<CharacterObject>().statusEffects)
-        {
-            if (status == StatusEffect.Sharpened){
-                sprites.Add(GameAssets.i.sharpenedSprite);
-            }
+        else if(status == StatusEffect.Sharpened){
+            StatusIcon.Create(gameObject.transform, true, StatusEffect.Sharpened);
         }
-        Debug.Log(sprites);
-        return sprites.ToArray();
     }
 }

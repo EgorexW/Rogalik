@@ -68,6 +68,10 @@ public class LevelGeneration : MonoBehaviour
             Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomLayer);
             if (roomDetection == null || roomDetection.gameObject.GetComponent<RoomType>().roomType != 0)
             {
+                if (directions.Count <= 1){
+                    GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(true);
+                    break;
+                }
                 directions.Remove(direction);
                 removedDirections.Add(direction);
                 transform.position = previousPosition;
@@ -76,9 +80,6 @@ public class LevelGeneration : MonoBehaviour
                     break;
                 }
                 continue;
-            }
-            if (directions.Count <= 1){
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(true);
             }
             foreach (Vector3 dirToAdd in removedDirections)
             {

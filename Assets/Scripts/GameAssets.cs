@@ -15,5 +15,5 @@ public class GameAssets : MonoBehaviour
 
     public GameObject damagePopup;
 
-    public Sprite sharpenedSprite;
+    public GameObject statusIcon;
 }
