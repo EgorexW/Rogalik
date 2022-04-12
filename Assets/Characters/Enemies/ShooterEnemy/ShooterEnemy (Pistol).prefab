@@ -272,10 +272,6 @@ MonoBehaviour:
   health: 2
   statusEffects: 
   resistance: 0
-  statusIcons:
-  - {fileID: 3568218234663784750}
-  - {fileID: 7204460551299589429}
-  - {fileID: 4992928114612145019}
   shieldDrop: 1
   shieldRange: 10
 --- !u!114 &8024649573061687210
@@ -437,10 +433,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1556430534583375961}
     m_Modifications:
-    - target: {fileID: 1464228535615676178, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
-      propertyPath: ammo
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7980874424524651240, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
       propertyPath: m_RootOrder
       value: 0

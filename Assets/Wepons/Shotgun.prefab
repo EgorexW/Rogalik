@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireRange: 3
   damage: 3
-  critChance: 50
+  critChance: 20
   fireLayerMask:
     serializedVersion: 2
     m_Bits: 328

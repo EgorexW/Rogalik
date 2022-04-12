@@ -24,13 +24,16 @@ public static class StatusEffects
 
     public static void GetStatusCheck(GameObject gameObject, StatusEffect status){
         List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
-        if (status == StatusEffect.Crit){
-            if (statusEffects.Contains(StatusEffect.Sharpened)){
-                gameObject.GetComponent<CharacterObject>().Damage(99999);
-            }
-        }
-        else if(status == StatusEffect.Sharpened){
-            StatusIcon.Create(gameObject.transform, true, StatusEffect.Sharpened);
+        switch (status)
+        {
+            case StatusEffect.Crit:
+                if (statusEffects.Contains(StatusEffect.Sharpened)){
+                    gameObject.GetComponent<CharacterObject>().Damage(99999);
+                }
+                break;
+            case StatusEffect.Sharpened:
+                StatusIcon.Create(gameObject.transform, true, StatusEffect.Sharpened);
+                break;
         }
     }
 }

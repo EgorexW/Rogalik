@@ -13,19 +13,10 @@ public class CharacterObject : MonoBehaviour
     protected TurnController turnController;
 
     protected void Register() {
-        GameObject[] controllers = GameObject.FindGameObjectsWithTag("GameController");
-        turnController = controllers[0].GetComponent<TurnController>();
+        GameObject controller = GameObject.FindGameObjectWithTag("GameController");
+        turnController = controller.GetComponent<TurnController>();
         turnController.RegisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
     }
-
-    // void Update(){
-    //     Sprite[] sprites = StatusEffects.GetSprites(gameObject);
-    //     int x = 0;
-    //     foreach (Sprite sprite in sprites){
-    //         statusIcons[x].GetComponent<SpriteRenderer>().sprite = sprite;
-    //         x ++;
-    //     }
-    // }
 
     public virtual void Damage(int damage){
         DamagePopup.Create(transform.position, damage, statusEffects.Contains(StatusEffect.Crit));

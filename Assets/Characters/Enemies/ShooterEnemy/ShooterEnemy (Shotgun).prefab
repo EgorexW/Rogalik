@@ -187,13 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moved: 0
   onTurn: 1
-  health: 5
+  health: 4
   statusEffects: 
   resistance: 0
-  statusIcons:
-  - {fileID: 5407684821357443887}
-  - {fileID: 5630868403381157773}
-  - {fileID: 5753233416528307311}
   shieldDrop: 2
   shieldRange: 10
 --- !u!114 &8024649573061687210
