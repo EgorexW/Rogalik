@@ -8,8 +8,11 @@ public class EnemyPodsGenerator : MonoBehaviour
 
     [SerializeField] int roomsNr;
     [SerializeField] GameObject enemyPod;
+    [SerializeField] GameObject chest;
     [SerializeField] int podsMin;
     [SerializeField] int podsMax;
+    [SerializeField] int chestMin;
+    [SerializeField] int chestMax;
     [SerializeField] int roomSize;
     [SerializeField] int spawnOffset;
     [SerializeField] float podsIncresePerLevel;
@@ -57,14 +60,22 @@ public class EnemyPodsGenerator : MonoBehaviour
                 }
             }
             // Debug.Log(locations.Count);
-            foreach (Vector2 location in locations)
+            foreach (Vector2 locationTmp in locations)
             {   
-                if(Physics2D.OverlapCircle(location, 0.1f) == null){
-                    avaliableLocations.Add(location);
+                if(Physics2D.OverlapCircle(locationTmp, 0.1f) == null){
+                    avaliableLocations.Add(locationTmp);
                 }
             }
-            // Debug.Log(avaliableLocations.Count);
-            Instantiate(enemyPod, avaliableLocations[Random.Range(0, avaliableLocations.Count - 1)], Quaternion.identity);
+            Vector2 location = avaliableLocations[Random.Range(0, avaliableLocations.Count - 1)];
+            avaliableLocations.Remove(location);
+            Instantiate(enemyPod, location, Quaternion.identity);
+            int chests = Random.Range(chestMin, chestMax);
+            while(chests > 0){
+                location = avaliableLocations[Random.Range(0, avaliableLocations.Count - 1)];
+                avaliableLocations.Remove(location);
+                Instantiate(chest, location, Quaternion.identity);
+                chests --;
+            }
         }
     }
     

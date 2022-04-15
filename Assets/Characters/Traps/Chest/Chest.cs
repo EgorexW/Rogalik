@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chest : CharacterObject
 {
 
-    [SerializeField] List<GameObject> lootTable = new List<GameObject>();
+    [SerializeField] List<WeightedValue<GameObject>> lootTable = new List<WeightedValue<GameObject>>();
 
     protected override void Die(){
         Loot();
@@ -16,7 +16,8 @@ public class Chest : CharacterObject
     }
 
     void Loot(){
-        GameObject loot = Instantiate(lootTable[0], transform.position, Quaternion.identity);
+        GameObject lootToSpawn = WeightedValue<GameObject>.GetWeightedRandom(lootTable);
+        GameObject loot = Instantiate(lootToSpawn, transform.position, Quaternion.identity);
         loot.GetComponent<SpriteRenderer>().enabled = true;
         loot.GetComponent<BoxCollider2D>().enabled = true;
         Destroy(gameObject);

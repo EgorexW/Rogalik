@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 123652501212549282}
   m_Layer: 8
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,12 @@ MonoBehaviour:
   statusEffects: 
   resistance: 0
   lootTable:
-  - {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
+  - value: {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
+    chance: 60
+  - value: {fileID: 8601603496818850289, guid: 7eb1ad7027fca79478eb02afb513f1d8, type: 3}
+    chance: 30
+  - value: {fileID: 8601603496818850289, guid: ee1a6b2809deaf946b751586c759b3f9, type: 3}
+    chance: 10
 --- !u!61 &123652501212549282
 BoxCollider2D:
   m_ObjectHideFlags: 0
