@@ -7,4 +7,5 @@ public class UIManager : MonoBehaviour
     public GameObject WeaponUI1;
     public GameObject WeaponUI2;
     public GameObject StatsUI;
+    public GameObject ItemsUI;
 }

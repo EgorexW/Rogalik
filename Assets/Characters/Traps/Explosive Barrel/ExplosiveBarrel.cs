@@ -6,7 +6,7 @@ public class ExplosiveBarrel : CharacterObject
 {
 
     [SerializeField] Vector3[] positions;
-    [SerializeField] int damage;
+    [SerializeField] Damage dmg;
     [SerializeField] StatusEffect statusEffect;
 
     [SerializeField] LayerMask characterLayerMask;
@@ -32,7 +32,7 @@ public class ExplosiveBarrel : CharacterObject
         foreach (GameObject target in targets)
         {
             target.GetComponent<CharacterObject>().ApplyStatusEffect(statusEffect);
-            target.GetComponent<CharacterObject>().Damage(damage);
+            target.GetComponent<CharacterObject>().Damage(dmg);
         }
         Destroy(gameObject);
     }

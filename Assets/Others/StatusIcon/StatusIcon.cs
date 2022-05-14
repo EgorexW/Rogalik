@@ -7,6 +7,7 @@ public class StatusIcon : MonoBehaviour
     static Vector3 offsetValue = new Vector3(0.3f, -0.3f, 0);
 
     [SerializeField] Sprite sharpenedSprite;
+    [SerializeField] Sprite protectedSprite;
 
     Transform parent;
     bool offset;
@@ -22,6 +23,8 @@ public class StatusIcon : MonoBehaviour
     public void Setup(StatusEffect statusEffect, Transform parentTmp, bool offsetTmp){
         if (statusEffect == StatusEffect.Sharpened){
             GetComponent<SpriteRenderer>().sprite = sharpenedSprite;
+        } else if (statusEffect == StatusEffect.Protected){
+            GetComponent<SpriteRenderer>().sprite = protectedSprite;
         }
 
         parent = parentTmp;

@@ -99,15 +99,20 @@ MonoBehaviour:
   moved: 0
   onTurn: 0
   health: 1
+  maxHealth: 0
   statusEffects: 
   resistance: 0
   lootTable:
   - value: {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
-    chance: 60
-  - value: {fileID: 8601603496818850289, guid: 7eb1ad7027fca79478eb02afb513f1d8, type: 3}
-    chance: 30
-  - value: {fileID: 8601603496818850289, guid: ee1a6b2809deaf946b751586c759b3f9, type: 3}
     chance: 10
+  - value: {fileID: 8601603496818850289, guid: 7eb1ad7027fca79478eb02afb513f1d8, type: 3}
+    chance: 20
+  - value: {fileID: 8601603496818850289, guid: ee1a6b2809deaf946b751586c759b3f9, type: 3}
+    chance: 30
+  - value: {fileID: 6629716894996324183, guid: 30a76af676e3feb47a231ee00a5fa1df, type: 3}
+    chance: 50
+  - value: {fileID: 6629716894996324183, guid: 507185f15183c7a4baa20d7efc59caf6, type: 3}
+    chance: 20
 --- !u!61 &123652501212549282
 BoxCollider2D:
   m_ObjectHideFlags: 0

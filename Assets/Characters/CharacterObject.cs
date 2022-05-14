@@ -7,8 +7,15 @@ public class CharacterObject : MonoBehaviour
     public bool moved;
     public int onTurn;  //can move in given turn
     [SerializeField] protected int health;
+    [SerializeField] protected int maxHealth = 0;
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
     public int resistance;
+
+    public void Awake(){
+        if (maxHealth == 0){
+            maxHealth = health;
+        }
+    }
 
     protected TurnController turnController;
 
@@ -18,13 +25,21 @@ public class CharacterObject : MonoBehaviour
         turnController.RegisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
     }
 
-    public virtual void Damage(int damage){
-        DamagePopup.Create(transform.position, damage, statusEffects.Contains(StatusEffect.Crit));
-        statusEffects.RemoveAll(status => status == StatusEffect.Crit);
-        health -= damage;
+    public virtual Damage Damage(Damage dmg){
+        dmg = StatusEffects.OnHit(gameObject, dmg);
+        DamagePopup.Create(transform.position, dmg.damage, dmg.crit);
+        health -= dmg.damage;
+        if (dmg.crit){
+            ApplyStatusEffect(StatusEffect.Stunned);
+        }
         if (health <= 0){
             Die();
         }
+        return dmg;
+    }
+
+    public virtual void Heal(int healValue){
+        health = Mathf.Min(health + healValue, maxHealth);
     }
 
     public virtual void ApplyStatusEffect(StatusEffect status){

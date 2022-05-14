@@ -12,7 +12,6 @@ public class PlayerInput : CharacterObject
 
     [SerializeField] int shield;
     [SerializeField] int maxShield;
-    [SerializeField] int maxHealth;
 
     bool statusEffectsCheck = false;
 
@@ -49,6 +48,12 @@ public class PlayerInput : CharacterObject
             } else if (Input.GetButtonDown("Pick Up") == true){
                 pI.PickUp();
                 moveMade = false;
+            } else if (Input.GetButtonDown("Item 0") == true){
+                moveMade = pI.UseItem(0);
+            } else if (Input.GetButtonDown("Item 1") == true){
+                moveMade = pI.UseItem(1);
+            } else if (Input.GetButtonDown("Item 2") == true){
+                moveMade = pI.UseItem(2);
             }
 
             if (moveMade) {
@@ -61,15 +66,21 @@ public class PlayerInput : CharacterObject
         }
     }
 
-    public override void Damage(int damage){
-        health += Mathf.Min(shield, damage);
-        shield -= Mathf.Min(shield, damage);
-        base.Damage(damage);
+    public override Damage Damage(Damage dmg){
+        dmg = StatusEffects.OnHit(gameObject, dmg);
+        DamagePopup.Create(transform.position, dmg.damage, dmg.crit);
+        health -= dmg.damage;
+        if (dmg.crit){
+            ApplyStatusEffect(StatusEffect.Stunned);
+        }
+        health += Mathf.Min(shield, dmg.damage);
+        shield -= Mathf.Min(shield, dmg.damage);
         StatsUI.GetComponent<StatsUI>().UpdateStatsHealthUI(health);
         StatsUI.GetComponent<StatsUI>().UpdateStatsShieldUI(shield);
         if (health <= 0){
             Die();
         }
+        return dmg;
     }
 
     public void GiveShield(int shieldGot){
