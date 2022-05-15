@@ -43,7 +43,6 @@ public class CharacterObject : MonoBehaviour
     }
 
     public virtual void ApplyStatusEffect(StatusEffect status){
-        statusEffects.Add(status);
         StatusEffects.GetStatusCheck(gameObject, status);
     }
 

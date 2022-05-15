@@ -15,7 +15,7 @@ public static class StatusEffects
         List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
         bool moved = false;
         if (statusEffects.Contains(StatusEffect.Stunned)){
-            statusEffects.RemoveAll(status => status == StatusEffect.Stunned);
+            statusEffects.Remove(StatusEffect.Stunned);
             gameObject.GetComponent<CharacterObject>().moved = true;
             moved = true;
         }
@@ -27,10 +27,21 @@ public static class StatusEffects
         switch (status)
         {
             case StatusEffect.Sharpened:
-                StatusIcon.Create(gameObject.transform, true, StatusEffect.Sharpened);
+                if (!statusEffects.Contains(status)){
+                    StatusIcon.Create(gameObject.transform, true, status);
+                    statusEffects.Add(status);
+                }
                 break;
             case StatusEffect.Protected:
-                StatusIcon.Create(gameObject.transform, true, StatusEffect.Protected);
+                if (!statusEffects.Contains(status)){
+                    StatusIcon.Create(gameObject.transform, true, status);
+                    statusEffects.Add(status);
+                }
+                break;
+            case StatusEffect.Stunned:
+                if (!statusEffects.Contains(status)){
+                    statusEffects.Add(status);
+                }
                 break;
         }
     }
@@ -38,12 +49,12 @@ public static class StatusEffects
     public static Damage OnHit(GameObject gameObject, Damage dmg){
         if (dmg.crit){
             if (gameObject.GetComponent<CharacterObject>().statusEffects.Contains(StatusEffect.Sharpened)){
-                dmg = new Damage(9999, false);
+                dmg = new Damage(9999, true);
             } 
-            gameObject.GetComponent<CharacterObject>().ApplyStatusEffect(StatusEffect.Stunned);
         }
         if (gameObject.GetComponent<CharacterObject>().statusEffects.Contains(StatusEffect.Protected)){
             dmg = new Damage(0, false);
+            gameObject.GetComponent<CharacterObject>().statusEffects.Remove(StatusEffect.Protected);
         } 
         return dmg;
     }

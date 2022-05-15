@@ -9,6 +9,9 @@ public class StatusIcon : MonoBehaviour
     [SerializeField] Sprite sharpenedSprite;
     [SerializeField] Sprite protectedSprite;
 
+
+    [SerializeField] LayerMask iconsLayer;
+    StatusEffect statusEffect;
     Transform parent;
     bool offset;
     
@@ -20,7 +23,8 @@ public class StatusIcon : MonoBehaviour
         return statusIcon;
     }
 
-    public void Setup(StatusEffect statusEffect, Transform parentTmp, bool offsetTmp){
+    public void Setup(StatusEffect tmp_statusEffect, Transform parentTmp, bool offsetTmp){
+        statusEffect = tmp_statusEffect;
         if (statusEffect == StatusEffect.Sharpened){
             GetComponent<SpriteRenderer>().sprite = sharpenedSprite;
         } else if (statusEffect == StatusEffect.Protected){
@@ -32,11 +36,15 @@ public class StatusIcon : MonoBehaviour
     }
 
     void LateUpdate(){
-        if(parent == null){
+        if(parent == null || !parent.GetComponent<CharacterObject>().statusEffects.Contains(statusEffect)){
             Destroy(gameObject);
             return;
         }
-        transform.position = parent.position + offsetValue;
+        Vector3 offsetTmp = offsetValue;
+        while (Physics2D.OverlapCircle(parent.position + offsetTmp, 0.1f, iconsLayer) != null && Physics2D.OverlapCircle(parent.position + offsetTmp, 0.1f, iconsLayer).transform != gameObject.transform){
+            offsetTmp.x -= transform.localScale.x;
+        }
+        transform.position = parent.position + offsetTmp;
     }
 
 }
