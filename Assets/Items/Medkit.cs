@@ -7,9 +7,10 @@ public class Medkit : Item
 
     [SerializeField] int healValue;
     [SerializeField] bool useMove;
+    [SerializeField] HealType healType; 
 
     public override bool Use(GameObject user){
-        user.GetComponent<CharacterObject>().Heal(healValue);
+        user.GetComponent<CharacterObject>().Heal(healValue, healType);
         return useMove;
     }
 }

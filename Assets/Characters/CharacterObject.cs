@@ -6,15 +6,19 @@ public class CharacterObject : MonoBehaviour
 {
     public bool moved;
     public int onTurn;  //can move in given turn
+
     [SerializeField] protected int health;
     [SerializeField] protected int maxHealth = 0;
+
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
+
     public int resistance;
 
     public void Awake(){
         if (maxHealth == 0){
             maxHealth = health;
         }
+        gameObject.AddComponent<StatusIconPlugin>();
     }
 
     protected TurnController turnController;
@@ -38,7 +42,8 @@ public class CharacterObject : MonoBehaviour
         return dmg;
     }
 
-    public virtual void Heal(int healValue){
+    public virtual void Heal(int healValue, HealType healType){
+        StatusEffects.Heal(gameObject, healType);
         health = Mathf.Min(health + healValue, maxHealth);
     }
 

@@ -188,8 +188,12 @@ MonoBehaviour:
   moved: 0
   onTurn: 1
   health: 5
+  maxHealth: 0
   statusEffects: 
   resistance: -30
+  movement: {fileID: 5845305234624959285, guid: 95cafd0c2939b6a4b9d09083028be342, type: 3}
+  targeting: {fileID: 8024649573061687210, guid: 95cafd0c2939b6a4b9d09083028be342, type: 3}
+  attack: {fileID: -6354371102959841278, guid: 95cafd0c2939b6a4b9d09083028be342, type: 3}
   shieldDrop: 4
   shieldRange: 10
 --- !u!114 &8024649573061687210

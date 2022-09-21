@@ -24,6 +24,7 @@ public class StatusIcon : MonoBehaviour
     }
 
     public void Setup(StatusEffect tmp_statusEffect, Transform parentTmp, bool offsetTmp){
+        parentTmp.GetComponent<StatusIconPlugin>().Register(this);
         statusEffect = tmp_statusEffect;
         if (statusEffect == StatusEffect.Sharpened){
             GetComponent<SpriteRenderer>().sprite = sharpenedSprite;
@@ -35,15 +36,14 @@ public class StatusIcon : MonoBehaviour
         offset = offsetTmp;
     }
 
-    void LateUpdate(){
+    public void RunUpdate(int index){
         if(parent == null || !parent.GetComponent<CharacterObject>().statusEffects.Contains(statusEffect)){
+            parent.GetComponent<StatusIconPlugin>().Unregister(this);
             Destroy(gameObject);
             return;
         }
         Vector3 offsetTmp = offsetValue;
-        while (Physics2D.OverlapCircle(parent.position + offsetTmp, 0.1f, iconsLayer) != null && Physics2D.OverlapCircle(parent.position + offsetTmp, 0.1f, iconsLayer).transform != gameObject.transform){
-            offsetTmp.x -= transform.localScale.x;
-        }
+        offsetTmp.x -= transform.localScale.x * index;
         transform.position = parent.position + offsetTmp;
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ShooterTargeting : MonoBehaviour
+public class AITargeting : MonoBehaviour
 {
     public LayerMask charLayerMask;
     public float seeRange;

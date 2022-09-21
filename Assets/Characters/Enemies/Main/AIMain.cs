@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterMain : CharacterObject
+public class AIMain : CharacterObject
 {
     private GameObject target;
-    private ShooterMovement movement;
-    private ShooterTargeting targeting;
-    private ShooterAttack attack;
+    [SerializeField] AIMovement movement;
+    [SerializeField] AITargeting targeting;
+    [SerializeField] AIAttack attack;
 
     [SerializeField]
     int shieldDrop;
@@ -16,9 +16,6 @@ public class ShooterMain : CharacterObject
 
     void Start(){
         Register();
-        movement = GetComponent<ShooterMovement>();
-        targeting = GetComponent<ShooterTargeting>();
-        attack = GetComponent<ShooterAttack>();
         // StatusIcon.Create(transform, true, StatusEffect.Sharpened);
     }
     void Update(){
@@ -48,7 +45,6 @@ public class ShooterMain : CharacterObject
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().GiveShield(shieldDrop);
         }
         attack.DropWeapon();
-        Destroy(gameObject);
-        turnController.UnregisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
+        base.Die();
     }
 }

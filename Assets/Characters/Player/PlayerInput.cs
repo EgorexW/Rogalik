@@ -91,8 +91,8 @@ public class PlayerInput : CharacterObject
         StatsUI.GetComponent<StatsUI>().UpdateStatsShieldUI(shield);
     }
 
-    public override void Heal(int healValue){
-        health = Mathf.Min(health + healValue, maxHealth);
+    public override void Heal(int healValue, HealType healType){
+        base.Heal(healValue, healType);
         StatsUI.GetComponent<StatsUI>().UpdateStatsHealthUI(health);
     }
 }

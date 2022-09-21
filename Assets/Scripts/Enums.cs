@@ -22,3 +22,9 @@ public enum RoomTemplateType{
     DeadEnd,
     Closed
 }
+
+public enum HealType
+{
+    Medkit  
+} 
+

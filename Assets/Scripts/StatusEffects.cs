@@ -22,6 +22,15 @@ public static class StatusEffects
         return moved;
     }
 
+    public static void Heal(GameObject gameObject, HealType healType){
+        List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
+        switch (healType){
+            case HealType.Medkit:
+            statusEffects.Remove(StatusEffect.Sharpened);
+            break;
+        }
+    }
+
     public static void GetStatusCheck(GameObject gameObject, StatusEffect status){
         List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
         switch (status)
@@ -49,7 +58,7 @@ public static class StatusEffects
     public static Damage OnHit(GameObject gameObject, Damage dmg){
         if (dmg.crit){
             if (gameObject.GetComponent<CharacterObject>().statusEffects.Contains(StatusEffect.Sharpened)){
-                dmg = new Damage(9999, true);
+                dmg = new Damage(dmg.damage + 10, true);
             } 
         }
         if (gameObject.GetComponent<CharacterObject>().statusEffects.Contains(StatusEffect.Protected)){

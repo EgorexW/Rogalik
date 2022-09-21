@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterAttack : MonoBehaviour
+public class AIAttack : MonoBehaviour
 {
     static EnemyCollection enemyCollection = new EnemyCollection();
     [SerializeField]

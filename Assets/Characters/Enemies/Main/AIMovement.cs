@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterMovement : MonoBehaviour
+public class AIMovement : MonoBehaviour
 {
     static EnemyCollection enemyCollection = new EnemyCollection();
     private WorldGridMap pathFind;
