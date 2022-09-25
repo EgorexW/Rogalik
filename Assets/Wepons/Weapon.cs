@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     public Sprite sprite;
     public WeaponTypes weaponType;
     
-    public virtual string Fire(Vector2 dir){
+    public virtual string Fire(Vector2 dir, int damageMod = 0){
         if (ammo <= 0){
             return "Miss";
         }
@@ -25,10 +25,10 @@ public class Weapon : MonoBehaviour
         }
         if (raycats.transform.tag == "Player" || raycats.transform.tag == "Character"){
             bool crit = false;
-            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().resistance){
+            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().GetResistance()){
                 crit = true;
             }
-            raycats.transform.GetComponent<CharacterObject>().Damage(new Damage(damage, crit));
+            raycats.transform.GetComponent<CharacterObject>().Damage(new Damage(damage + damageMod, crit));
             if (raycats.transform == null){
                 return "Kill";
             }

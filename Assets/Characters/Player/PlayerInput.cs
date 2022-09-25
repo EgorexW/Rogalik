@@ -13,7 +13,8 @@ public class PlayerInput : CharacterObject
     [SerializeField] int shield;
     [SerializeField] int maxShield;
 
-    bool statusEffectsCheck = false;
+    public bool rotated;
+    bool startTurnCheck = false;
 
     public void Start() {
         Register();
@@ -28,18 +29,20 @@ public class PlayerInput : CharacterObject
     void Update()
     {
         if (turnController.GetCurrentTurn() == onTurn && !moved){
-            if (!statusEffectsCheck){
+            if (!startTurnCheck){
                 moved = StatusEffects.StartTurnCheck(gameObject);
                 if (moved){
                     return;
                 }   
-                statusEffectsCheck = true;
+                rotated = false;
+                startTurnCheck = true;
             }
             bool moveMade = false;
+            bool shift = Input.GetButton("Shift");
             if (Input.GetAxisRaw("Vertical") != 0) {
-                moveMade = pM.Movement(Input.GetAxisRaw("Vertical"), true, Input.GetButton("Shift"));
+                moveMade = pM.Movement(Input.GetAxisRaw("Vertical"), true, shift);
             } else if (Input.GetAxisRaw("Horizontal") != 0) {
-                moveMade = pM.Movement(Input.GetAxisRaw("Horizontal"), false, Input.GetButton("Shift"));
+                moveMade = pM.Movement(Input.GetAxisRaw("Horizontal"), false, shift);
             } else if (Input.GetButtonDown("Switch Weapon") == true){
                 pI.SwitchWeapon();
             } else if (Input.GetButtonDown("Fire") == true){
@@ -58,7 +61,7 @@ public class PlayerInput : CharacterObject
 
             if (moveMade) {
                 GetComponent<CharacterObject>().moved = true;
-                statusEffectsCheck = false;
+                startTurnCheck = false;
             }
         }
         if (Input.GetButtonDown("Reload Scene")){

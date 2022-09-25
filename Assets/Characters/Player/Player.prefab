@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 232037091651555007}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.517075, y: 0.517075, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1016135969726540775}
   - {fileID: 8095625718826048674}
@@ -50,6 +51,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -107,6 +109,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   PM: {fileID: 1447920489755688474}
+  PI: {fileID: 7070837806305188972}
 --- !u!114 &1447920489755688474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,12 +140,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moved: 0
   onTurn: 0
+  isPlayer: 1
   health: 20
   maxHealth: 30
+  team: {fileID: 11400000, guid: de317cd3c7d274259ad79bfa2e9daf4f, type: 2}
   statusEffects: 
   resistance: 20
   shield: 10
   maxShield: 10
+  rotated: 0
 --- !u!114 &-2775962809729801485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,13 +334,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
---- !u!1 &1694692151526664446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
-  m_PrefabInstance: {fileID: 6979393354081931535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1016135969726540775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7980874424524651240, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
+  m_PrefabInstance: {fileID: 6979393354081931535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1694692151526664446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
   m_PrefabInstance: {fileID: 6979393354081931535}
   m_PrefabAsset: {fileID: 0}

@@ -14,7 +14,12 @@ public class AIMovement : MonoBehaviour
     }
 
     public void Move(GameObject target){
-        List<Vector3> path = pathFind.FindPath(transform.position, target.transform.position);
+        Debug.Log(target);
+        Move(target.transform.position);
+    }
+
+    public void Move(Vector3 target){
+        List<Vector3> path = pathFind.FindPath(transform.position, target);
         if (path != null && path.Count > 1){
             Vector3 toMove = path[1];
             if (Physics2D.OverlapCircle(toMove, 0.1f, moveLayer) == null){

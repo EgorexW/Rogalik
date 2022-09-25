@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8253598045037432659}
   - component: {fileID: -5872721692081450933}
   m_Layer: 0
-  m_Name: EnemyPod1
+  m_Name: EnemyPod7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01ac304bb910a241bfa8921737e1bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 7
+  size: 5
   enemies:
-  - {fileID: 5499802585077693952, guid: 8455678861823f04ca1e0d26cb9e6290, type: 3}
-  - {fileID: 5499802585077693952, guid: 8455678861823f04ca1e0d26cb9e6290, type: 3}
-  - {fileID: 5499802585077693952, guid: 8455678861823f04ca1e0d26cb9e6290, type: 3}
   - {fileID: 5499802585077693952, guid: 87be93e8d7f67fc42af0ce1304ee56e1, type: 3}
+  - {fileID: 5499802585077693952, guid: 87be93e8d7f67fc42af0ce1304ee56e1, type: 3}
+  - {fileID: 5499802585077693952, guid: c835f24a415cce44f8ec6603f7dd985e, type: 3}

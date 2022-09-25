@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject CM;
     [SerializeField]
     PlayerMain PM;
+    [SerializeField]
+    PlayerInput PI;
 
     public void Start(){
         CM = GameObject.FindGameObjectWithTag("MainCamera");
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if (onlyRotate){
             PM.dir = new Vector2(x, y);
             Rotate(new Vector2(x, y));
+            PI.rotated = true;
             return false;
         }
 

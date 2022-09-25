@@ -7,12 +7,16 @@ public class CharacterObject : MonoBehaviour
     public bool moved;
     public int onTurn;  //can move in given turn
 
+    public bool isPlayer = false;
+
     [SerializeField] protected int health;
     [SerializeField] protected int maxHealth = 0;
 
+    [SerializeField] protected Team team;
+
     public List<StatusEffect> statusEffects = new List<StatusEffect>();
 
-    public int resistance;
+    [SerializeField] protected int resistance;
 
     public void Awake(){
         if (maxHealth == 0){
@@ -54,5 +58,17 @@ public class CharacterObject : MonoBehaviour
     protected virtual void Die(){
         Destroy(gameObject);
         turnController.UnregisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
+    }
+
+    public FriendOrFoe CheckIfFriendOrFoe(GameObject character){
+        return team.GetFriendOrFoe(character.GetComponent<CharacterObject>().GetTeam());
+    }
+
+    public Team GetTeam(){
+        return team;
+    }
+
+    public int GetResistance(){
+        return resistance;
     }
 }

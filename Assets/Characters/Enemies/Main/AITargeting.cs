@@ -1,28 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class AITargeting : MonoBehaviour
 {
-    public LayerMask charLayerMask;
-    public float seeRange;
+    [SerializeField] protected LayerMask charLayerMask;
+    [SerializeField] protected float seeRange;
 
-    public GameObject GetTarget(){
-        List<GameObject> targets = new List<GameObject>();
-        targets.AddRange(GameObject.FindGameObjectsWithTag("Player"));
+    public virtual GameObject GetTarget(){
+        List<GameObject> characters = new List<GameObject>();
+        characters.AddRange(GameObject.FindGameObjectsWithTag("Character"));
         float lowDistance = Mathf.Infinity;
         GameObject bestTarget = null;
-        foreach (GameObject target in targets)
+        foreach (GameObject character in characters)
         {
-            float x = transform.position.x - target.transform.position.x;
-            float y = transform.position.y - target.transform.position.y;
-            float distance = (float)Math.Sqrt(x*x + y*y);
+            if (GetComponent<AIMain>().CheckIfFriendOrFoe(character) != FriendOrFoe.Foe){
+                continue;
+            }
+            float x = transform.position.x - character.transform.position.x;
+            float y = transform.position.y - character.transform.position.y;
+            float distance = Mathf.Abs(x) + Mathf.Abs(y);
+            // Debug.Log(distance);
             if (distance < lowDistance && distance < seeRange){
                 lowDistance = distance;
-                bestTarget = target;
+                bestTarget = character;
             }
         }
+        // Debug.Log(bestTarget);
         return bestTarget;
+    }
+
+    public virtual Vector3 GetTargetPos(){
+        return GetTarget().transform.position;
     }
 }

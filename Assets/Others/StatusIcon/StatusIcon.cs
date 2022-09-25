@@ -8,6 +8,7 @@ public class StatusIcon : MonoBehaviour
 
     [SerializeField] Sprite sharpenedSprite;
     [SerializeField] Sprite protectedSprite;
+    [SerializeField] Sprite shieldedSprite;
 
 
     [SerializeField] LayerMask iconsLayer;
@@ -30,6 +31,8 @@ public class StatusIcon : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = sharpenedSprite;
         } else if (statusEffect == StatusEffect.Protected){
             GetComponent<SpriteRenderer>().sprite = protectedSprite;
+        } else if (statusEffect == StatusEffect.Shielded){
+            GetComponent<SpriteRenderer>().sprite = shieldedSprite;
         }
 
         parent = parentTmp;
@@ -37,14 +40,20 @@ public class StatusIcon : MonoBehaviour
     }
 
     public void RunUpdate(int index){
-        if(parent == null || !parent.GetComponent<CharacterObject>().statusEffects.Contains(statusEffect)){
-            parent.GetComponent<StatusIconPlugin>().Unregister(this);
-            Destroy(gameObject);
-            return;
-        }
         Vector3 offsetTmp = offsetValue;
         offsetTmp.x -= transform.localScale.x * index;
         transform.position = parent.position + offsetTmp;
     }
 
+    void Update() {
+        if(parent == null || !parent.GetComponent<CharacterObject>().statusEffects.Contains(statusEffect)){
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    void OnDestroy()
+    {
+        parent.GetComponent<StatusIconPlugin>().Unregister(this);
+    }
 }

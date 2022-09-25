@@ -7,7 +7,7 @@ public class HeavyWeapon : Weapon
 
     [SerializeField] StatusEffect shotingStatusEffect;
 
-    public override string Fire(Vector2 dir){
+    public override string Fire(Vector2 dir, int damageMod = 0){
         if (ammo <= 0){
             return "Miss";
         }

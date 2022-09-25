@@ -5,20 +5,20 @@ using UnityEngine;
 public class AIMain : CharacterObject
 {
     private GameObject target;
-    [SerializeField] AIMovement movement;
-    [SerializeField] AITargeting targeting;
-    [SerializeField] AIAttack attack;
+    [SerializeField] protected AIMovement movement;
+    [SerializeField] protected AITargeting targeting;
+    [SerializeField] protected AIAttack attack;
 
     [SerializeField]
-    int shieldDrop;
+    protected int shieldDrop;
     [SerializeField]
-    int shieldRange;
+    protected int shieldRange;
 
     void Start(){
         Register();
         // StatusIcon.Create(transform, true, StatusEffect.Sharpened);
     }
-    void Update(){
+    protected virtual void Update(){
         // Debug.Log("Current turn= " + turnController.currentTurn);
         if (turnController.GetCurrentTurn() == onTurn){
             if (moved == false){
@@ -41,10 +41,14 @@ public class AIMain : CharacterObject
     }
 
     protected override void Die(){
-        if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) <= shieldRange){
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().GiveShield(shieldDrop);
+        foreach(GameObject character in GameObject.FindGameObjectsWithTag("Character")){
+            if (character.GetComponent<CharacterObject>().isPlayer && Vector3.Distance(transform.position, character.transform.position) <= shieldRange){
+                character.GetComponent<PlayerInput>().GiveShield(shieldDrop);       
+            }
         }
-        attack.DropWeapon();
+        if (attack !=  null){
+            attack.DropWeapon();
+        }
         base.Die();
     }
 }

@@ -6,9 +6,9 @@ public class AIAttack : MonoBehaviour
 {
     static EnemyCollection enemyCollection = new EnemyCollection();
     [SerializeField]
-    GameObject weapon;
+    protected GameObject weapon;
 
-    public bool Attack(GameObject target){
+    public virtual bool Attack(GameObject target){
         if (enemyCollection.straitLineCheck(transform.position, target.transform.position) != Vector2.zero){
             Vector2 ray = enemyCollection.straitLineCheck(target.transform.position, transform.position).normalized;
             // Debug.Log(ray.normalized);
@@ -26,6 +26,9 @@ public class AIAttack : MonoBehaviour
     }
     
     public void DropWeapon(){
+        if (weapon == null){
+            return;
+        }
         weapon.transform.parent = transform.parent;
         weapon.GetComponent<SpriteRenderer>().enabled = true;
         weapon.GetComponent<BoxCollider2D>().enabled = true;

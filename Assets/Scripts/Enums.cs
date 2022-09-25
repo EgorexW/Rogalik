@@ -7,6 +7,12 @@ public enum WeaponTypes{
     Shotgun
 }
 
+public enum FriendOrFoe{
+    Friend,
+    Foe,
+    Neutral,
+    Unknown
+}
 public enum EventType{
     Empty,
     Explosive

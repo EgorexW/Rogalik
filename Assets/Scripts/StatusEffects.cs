@@ -6,7 +6,8 @@ public enum StatusEffect
 {
     Stunned,
     Sharpened,
-    Protected
+    Protected,
+    Shielded
 }
 
 public static class StatusEffects
@@ -47,6 +48,12 @@ public static class StatusEffects
                     statusEffects.Add(status);
                 }
                 break;
+            case StatusEffect.Shielded:
+                if (!statusEffects.Contains(status)){
+                    StatusIcon.Create(gameObject.transform, true, status);
+                }
+                statusEffects.Add(status);
+                break;
             case StatusEffect.Stunned:
                 if (!statusEffects.Contains(status)){
                     statusEffects.Add(status);
@@ -65,6 +72,10 @@ public static class StatusEffects
             dmg = new Damage(0, false);
             gameObject.GetComponent<CharacterObject>().statusEffects.Remove(StatusEffect.Protected);
         } 
+        else if(gameObject.GetComponent<CharacterObject>().statusEffects.Contains(StatusEffect.Shielded)){
+            dmg = new Damage(dmg.damage - 1, dmg.crit);
+            gameObject.GetComponent<CharacterObject>().statusEffects.Remove(StatusEffect.Shielded);
+        }
         return dmg;
     }
 }
