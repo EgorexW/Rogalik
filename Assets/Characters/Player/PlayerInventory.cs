@@ -49,6 +49,9 @@ public class PlayerInventory : MonoBehaviour
     }
 
     public void PickUp(){
+        if (Physics2D.OverlapCircle(transform.position, 0.1f, itemLayer) == null){
+            return;
+        }
         GameObject item = Physics2D.OverlapCircle(transform.position, 0.1f, itemLayer).gameObject;
         item.transform.parent = transform;
         item.GetComponent<SpriteRenderer>().enabled = false;

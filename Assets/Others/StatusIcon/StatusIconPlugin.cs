@@ -14,7 +14,7 @@ public class StatusIconPlugin : MonoBehaviour
         statusIcons.Remove(statusIcon);
     }
 
-    void Update(){
+    void LateUpdate(){
         List<StatusIcon> tmp_statusIcons = statusIcons;
         int index = 0;
         foreach (StatusIcon st in tmp_statusIcons){
