@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterObject : MonoBehaviour
 {
-    public bool moved;
+
     public int onTurn;  //can move in given turn
 
     public bool isPlayer = false;
@@ -25,12 +25,19 @@ public class CharacterObject : MonoBehaviour
         gameObject.AddComponent<StatusIconPlugin>();
     }
 
+    public virtual bool PlayTurn(){
+        if (StatusEffects.StartTurnCheck(gameObject)){
+            return false;
+        }
+        return true;
+    }
+
     protected TurnController turnController;
 
     protected void Register() {
         GameObject controller = GameObject.FindGameObjectWithTag("GameController");
         turnController = controller.GetComponent<TurnController>();
-        turnController.RegisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
+        turnController.RegisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this, isPlayer);
     }
 
     public virtual Damage Damage(Damage dmg){

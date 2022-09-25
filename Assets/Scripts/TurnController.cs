@@ -5,70 +5,64 @@ using UnityEngine;
 public class TurnController : MonoBehaviour
 {
     [SerializeField]
-    private int maxTurns;
+    private int nrTurns;
     [SerializeField]
     private float turnsInterval;
     [SerializeField]
     private float turnsBreak;
+    [SerializeField] float activateDis;
 
     private int currentTurn;
-    private bool turnBreak = false;
+    private bool turnEnded = true;
     private float timeToNextTurn;
     private List<List<CharacterObject>> characters = new List<List<CharacterObject>>();
+
+    CharacterObject player = null;
+    int playerTurn = -1;
 
     void Start(){
         currentTurn = 0;
         timeToNextTurn = turnsInterval;
-        for(int i=0; i<maxTurns; i++) {
+        for(int i=0; i<nrTurns ; i++) {
             getList(i);
         }
     }
 
-    private void NextTurn(){
-        if (turnBreak) {
-            clearAllMoved();
-            timeToNextTurn = turnsInterval;
-            turnBreak = false;
-            currentTurn += 1;
-            if (currentTurn >= maxTurns){
-                currentTurn = 0;
-            }
-        } else {
-            turnBreak = true;
-            timeToNextTurn = turnsBreak;
+    IEnumerator NextTurn(){
+        currentTurn += 1;
+        turnEnded = false;
+        if (currentTurn == nrTurns){
+            currentTurn = 0;
         }
-        // Debug.Log("Turn changed to: " + currentTurn + " break: " + turnBreak);
+        if (currentTurn == playerTurn){
+            yield return PlayerTurn();
+            timeToNextTurn = turnsBreak;
+            turnEnded = true;
+        }
+        else {
+            foreach (CharacterObject character in getList(currentTurn)){
+                if (Vector2.Distance(player.transform.position, character.transform.position) <= activateDis){
+                    if (character.PlayTurn()){
+                        yield return new WaitForSeconds(turnsInterval);
+                    }
+                }
+            }
+        }
+        timeToNextTurn = turnsBreak;
+        turnEnded = true;
+    }
+
+    IEnumerator PlayerTurn(){
+        while(!player.PlayTurn()){
+            yield return null;
+        }
     }
 
     void Update(){
         timeToNextTurn -= Time.deltaTime;
-        if (timeToNextTurn <= 0) {
-            if (turnBreak || CheckIfAllMoved()) {
-                NextTurn();
-            }
+        if (turnEnded && timeToNextTurn <= 0){
+            StartCoroutine(NextTurn());
         }
-    }
-
-    bool CheckIfAllMoved(){
-        foreach (CharacterObject character in getList(currentTurn)){
-            if (character.moved == false){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    void clearAllMoved(){
-        foreach (CharacterObject character in getList(currentTurn)){
-            character.moved = false;
-        }
-    }
-
-    public int GetCurrentTurn() {
-        if (turnBreak) {
-            return -1;
-        }
-        return currentTurn;
     }
 
     private List<CharacterObject> getList(int turn) {
@@ -83,11 +77,21 @@ public class TurnController : MonoBehaviour
         return list;
     }
 
-    public void RegisterObjectInTurn(int turn, CharacterObject gObject) {
+    public void RegisterObjectInTurn(int turn, CharacterObject gObject, bool isPlayer = false) {
+        if (isPlayer) {
+            player = gObject;
+            playerTurn = turn;
+            return;
+        }
         getList(turn).Add(gObject);
     }
 
-    public void UnregisterObjectInTurn(int turn, CharacterObject gObject) {
+    public void UnregisterObjectInTurn(int turn, CharacterObject gObject, bool isPlayer = false) {
+        if (isPlayer) {
+            player = null;
+            playerTurn = -1;
+            return;
+        }
         getList(turn).Remove(gObject);
     }
 }

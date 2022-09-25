@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -88,7 +89,7 @@ public class PlayerInventory : MonoBehaviour
         item.GetComponent<BoxCollider2D>().enabled = true;
         item.transform.rotation = Quaternion.identity;
         item.transform.position = new Vector3(item.transform.position.x, item.transform.position.y, dropNr);
-        // SceneManager.MoveGameObjectToScene(item, SceneManager.GetActiveScene());
+        SceneManager.MoveGameObjectToScene(item, SceneManager.GetActiveScene());
         dropNr ++;
     }
 

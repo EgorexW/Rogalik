@@ -14,7 +14,6 @@ public class AIMovement : MonoBehaviour
     }
 
     public void Move(GameObject target){
-        Debug.Log(target);
         Move(target.transform.position);
     }
 

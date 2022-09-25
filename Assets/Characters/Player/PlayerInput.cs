@@ -26,47 +26,45 @@ public class PlayerInput : CharacterObject
         StatsUI.GetComponent<StatsUI>().UpdateStatsShieldUI(shield);
     }
 
-    void Update()
+    public override bool PlayTurn()
     {
-        if (turnController.GetCurrentTurn() == onTurn && !moved){
-            if (!startTurnCheck){
-                moved = StatusEffects.StartTurnCheck(gameObject);
-                if (moved){
-                    return;
-                }   
-                rotated = false;
-                startTurnCheck = true;
-            }
-            bool moveMade = false;
-            bool shift = Input.GetButton("Shift");
-            if (Input.GetAxisRaw("Vertical") != 0) {
-                moveMade = pM.Movement(Input.GetAxisRaw("Vertical"), true, shift);
-            } else if (Input.GetAxisRaw("Horizontal") != 0) {
-                moveMade = pM.Movement(Input.GetAxisRaw("Horizontal"), false, shift);
-            } else if (Input.GetButtonDown("Switch Weapon") == true){
-                pI.SwitchWeapon();
-            } else if (Input.GetButtonDown("Fire") == true){
-                pA.UseWeapon();
-                moveMade = true;
-            } else if (Input.GetButtonDown("Pick Up") == true){
-                pI.PickUp();
-                moveMade = false;
-            } else if (Input.GetButtonDown("Item 0") == true){
-                moveMade = pI.UseItem(0);
-            } else if (Input.GetButtonDown("Item 1") == true){
-                moveMade = pI.UseItem(1);
-            } else if (Input.GetButtonDown("Item 2") == true){
-                moveMade = pI.UseItem(2);
-            }
+        if (!startTurnCheck){
+            bool moved = StatusEffects.StartTurnCheck(gameObject);
+            if (moved){
+                return moved;
+            }   
+            rotated = false;
+            startTurnCheck = true;
+        }
+        bool moveMade = false;
+        bool shift = Input.GetButton("Shift");
+        if (Input.GetAxisRaw("Vertical") != 0) {
+            moveMade = pM.Movement(Input.GetAxisRaw("Vertical"), true, shift);
+        } else if (Input.GetAxisRaw("Horizontal") != 0) {
+            moveMade = pM.Movement(Input.GetAxisRaw("Horizontal"), false, shift);
+        } else if (Input.GetButtonDown("Switch Weapon") == true){
+            pI.SwitchWeapon();
+        } else if (Input.GetButtonDown("Fire") == true){
+            pA.UseWeapon();
+            moveMade = true;
+        } else if (Input.GetButtonDown("Pick Up") == true){
+            pI.PickUp();
+            moveMade = false;
+        } else if (Input.GetButtonDown("Item 0") == true){
+            moveMade = pI.UseItem(0);
+        } else if (Input.GetButtonDown("Item 1") == true){
+            moveMade = pI.UseItem(1);
+        } else if (Input.GetButtonDown("Item 2") == true){
+            moveMade = pI.UseItem(2);
+        }
 
-            if (moveMade) {
-                GetComponent<CharacterObject>().moved = true;
-                startTurnCheck = false;
-            }
+        if (moveMade) {
+            startTurnCheck = false;
         }
         if (Input.GetButtonDown("Reload Scene")){
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(true);
         }
+        return moveMade;
     }
 
     public override Damage Damage(Damage dmg){

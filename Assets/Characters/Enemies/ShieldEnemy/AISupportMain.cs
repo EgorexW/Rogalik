@@ -7,20 +7,18 @@ public class AISupportMain : AIMain
 
     Vector3 targetPos;
 
-    protected override void Update()
+    public override bool PlayTurn()
     {
-        if (turnController.GetCurrentTurn() == onTurn){
-            if (moved == false){
-                if (StatusEffects.StartTurnCheck(gameObject)){
-                    return;
-                }
-                targetPos = targeting.GetTargetPos();
-                if (targetPos != transform.position){
-                    movement.Move(targetPos);
-                }
-                attack.Attack(null);
-                moved = true;
-            }
+        bool moved = false;
+        if (!base.PlayTurn()){
+            return false;
         }
+        targetPos = targeting.GetTargetPos();
+        if (targetPos != transform.position){
+            movement.Move(targetPos);
+            moved = true;
+        }
+        attack.Attack(null);
+        return moved;
     }
 }

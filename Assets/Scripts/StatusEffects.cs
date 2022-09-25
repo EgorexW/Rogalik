@@ -17,7 +17,6 @@ public static class StatusEffects
         bool moved = false;
         if (statusEffects.Contains(StatusEffect.Stunned)){
             statusEffects.Remove(StatusEffect.Stunned);
-            gameObject.GetComponent<CharacterObject>().moved = true;
             moved = true;
         }
         return moved;
