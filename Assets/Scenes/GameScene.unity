@@ -576,6 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c26239966d7764f8b69548e3e62247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLevel: 1
 --- !u!1 &246921702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,15 +1499,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomsNr: 25
-  enemyPod: {fileID: 960603061493072204, guid: 7800c767778da4c4bbe7e19d7f84fd41, type: 3}
+  enemyPodsPerLevel:
+  - {fileID: 11400000, guid: 9c35580ec78ef4ad2959c7e9acc49ccb, type: 2}
+  - {fileID: 11400000, guid: 75038e18f2e704a82bebcb7566a2b11d, type: 2}
+  - {fileID: 11400000, guid: 531dca99ee8f641cf85262225daf86ed, type: 2}
+  - {fileID: 11400000, guid: d119814872be445fba42fe2e79954418, type: 2}
+  - {fileID: 11400000, guid: 8f165beaff32e4722a805de6bac4073f, type: 2}
   chest: {fileID: 5928560033951157469, guid: 23f04251a4f708149b6c40563ceb392e, type: 3}
   podsMin: 3
+  mainPathDistribiution: 0.4
   podsMax: 5
   chestMin: 0
   chestMax: 3
   roomSize: 12
   spawnOffset: 3
   podsIncresePerLevel: 0.5
+  enemyPodSpawner: {fileID: 8387882904652889806, guid: cb426dd3103ff478dabfdad7681a29b8, type: 3}
 --- !u!114 &692313913
 MonoBehaviour:
   m_ObjectHideFlags: 0

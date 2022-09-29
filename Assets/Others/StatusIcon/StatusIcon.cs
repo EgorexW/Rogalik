@@ -54,6 +54,7 @@ public class StatusIcon : MonoBehaviour
 
     void OnDestroy()
     {
+        if (parent == null) return;
         parent.GetComponent<StatusIconPlugin>().Unregister(this);
     }
 }

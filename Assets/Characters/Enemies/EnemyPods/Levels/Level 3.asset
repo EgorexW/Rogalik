@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f9c45c419dc84d7794df6181584e875, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  enemyPods:
+  - {fileID: 11400000, guid: 4a6c4ec62862342be9c5f082f5d94080, type: 2}
+  - {fileID: 11400000, guid: b2d66b07d05124f589f21c863802b19d, type: 2}
+  - {fileID: 11400000, guid: 183ce7143df374a7b9d0478427b98f65, type: 2}
+  - {fileID: 11400000, guid: 6f33b66bc35ca4db1ae1f277db2f717c, type: 2}
+  - {fileID: 11400000, guid: 99e1c4c080dc24991bcd81656176bb5b, type: 2}
+  - {fileID: 11400000, guid: 15471d723a83946c0ae8789335f547fe, type: 2}

@@ -5,9 +5,12 @@ using UnityEngine;
 public class RoomType : MonoBehaviour
 {
     public int roomType;
+    public bool mainPath;
     public List<Vector3> connections;
 
     private Quaternion rotation;
+
+    GameObject room;
 
     // 0 for coridors, 1 for turn, 2 for 3-ways, 3 for 4-ways, 4 for dead ends, 5 for start, 6 for exit, 7 for closed;
     public GameObject[] rooms;
@@ -15,6 +18,8 @@ public class RoomType : MonoBehaviour
     void Update()
     {
         GenerateRoom();
+        // Debug.Log(mainPath);
+        room.GetComponent<RoomSpawn>().mainPath = mainPath;
         Destroy(gameObject);
     }
 
@@ -70,10 +75,10 @@ public class RoomType : MonoBehaviour
             if (Random.Range(0, 2) == 0)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 180);
-                Instantiate(rooms[0], transform.position, rotation);
+                room = Instantiate(rooms[0], transform.position, rotation);
                 return;
             }
-            Instantiate(rooms[0], transform.position, rotation);
+            room = Instantiate(rooms[0], transform.position, rotation);
             return;
         }
         else
@@ -81,11 +86,11 @@ public class RoomType : MonoBehaviour
             if (Random.Range(0, 2) == 0)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 270);
-                Instantiate(rooms[0], transform.position, rotation);
+                room = Instantiate(rooms[0], transform.position, rotation);
                 return;
             }
             rotation.eulerAngles = new Vector3(0, 0, 90);
-            Instantiate(rooms[0], transform.position, rotation);
+            room = Instantiate(rooms[0], transform.position, rotation);
             return;
         }
     }
@@ -99,11 +104,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 180);
-                    Instantiate(rooms[1], transform.position, rotation);
+                    room = Instantiate(rooms[1], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 270);
-                Instantiate(rooms[1], transform.position, rotation);
+                room = Instantiate(rooms[1], transform.position, rotation);
                 return;
 
             }
@@ -112,11 +117,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 90);
-                    Instantiate(rooms[1], transform.position, rotation);
+                    room = Instantiate(rooms[1], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 0);
-                Instantiate(rooms[1], transform.position, rotation);
+                room = Instantiate(rooms[1], transform.position, rotation);
                 return;
             }
         }
@@ -127,11 +132,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 270);
-                    Instantiate(rooms[1], transform.position, rotation);
+                    room = Instantiate(rooms[1], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(180, 0, 0);
-                Instantiate(rooms[1], transform.position, rotation);
+                room = Instantiate(rooms[1], transform.position, rotation);
                 return;
 
             }
@@ -140,11 +145,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 0);
-                    Instantiate(rooms[1], transform.position, rotation);
+                    room = Instantiate(rooms[1], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 90);
-                Instantiate(rooms[1], transform.position, rotation);
+                room = Instantiate(rooms[1], transform.position, rotation);
                 return;
             }
         }
@@ -157,11 +162,11 @@ public class RoomType : MonoBehaviour
             if (Random.Range(0, 2) == 0)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 180);
-                Instantiate(rooms[4], transform.position, rotation);
+                room = Instantiate(rooms[4], transform.position, rotation);
                 return;
             }
             rotation.eulerAngles = new Vector3(0, 180, 0);
-            Instantiate(rooms[4], transform.position, rotation);
+            room = Instantiate(rooms[4], transform.position, rotation);
             return;
         }
         if (connections.Contains(Vector3.down))
@@ -169,22 +174,22 @@ public class RoomType : MonoBehaviour
             if (Random.Range(0, 2) == 0)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 90);
-                Instantiate(rooms[4], transform.position, rotation);
+                room = Instantiate(rooms[4], transform.position, rotation);
                 return;
             }
             rotation.eulerAngles = new Vector3(180, 0, 270);
-            Instantiate(rooms[4], transform.position, rotation);
+            room = Instantiate(rooms[4], transform.position, rotation);
             return;
         }
         if (connections.Contains(Vector3.left))
         {
             if (Random.Range(0, 2) == 0)
             {
-                Instantiate(rooms[4], transform.position, rotation);
+                room = Instantiate(rooms[4], transform.position, rotation);
                 return;
             }
             rotation.eulerAngles = new Vector3(180, 0, 0);
-            Instantiate(rooms[4], transform.position, rotation);
+            room = Instantiate(rooms[4], transform.position, rotation);
             return;
         }
         else
@@ -192,11 +197,11 @@ public class RoomType : MonoBehaviour
             if (Random.Range(0, 2) == 0)
             {
                 rotation.eulerAngles = new Vector3(0, 0, 270);
-                Instantiate(rooms[4], transform.position, rotation);
+                room = Instantiate(rooms[4], transform.position, rotation);
                 return;
             }
             rotation.eulerAngles = new Vector3(180, 0, 90);
-            Instantiate(rooms[4], transform.position, rotation);
+            room = Instantiate(rooms[4], transform.position, rotation);
             return;
         }
     }
@@ -210,22 +215,22 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 180);
-                    Instantiate(rooms[2], transform.position, rotation);
+                    room = Instantiate(rooms[2], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(180, 0, 0);
-                Instantiate(rooms[2], transform.position, rotation);
+                room = Instantiate(rooms[2], transform.position, rotation);
                 return;
             }
             else
             {
                 if (Random.Range(0, 2) == 0)
                 {
-                    Instantiate(rooms[2], transform.position, rotation);
+                    room = Instantiate(rooms[2], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 0);
-                Instantiate(rooms[2], transform.position, rotation);
+                room = Instantiate(rooms[2], transform.position, rotation);
                 return;
             }
         }
@@ -236,11 +241,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 270);
-                    Instantiate(rooms[2], transform.position, rotation);
+                    room = Instantiate(rooms[2], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 90);
-                Instantiate(rooms[2], transform.position, rotation);
+                room = Instantiate(rooms[2], transform.position, rotation);
                 return;
             }
             else
@@ -248,11 +253,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 90);
-                    Instantiate(rooms[2], transform.position, rotation);
+                    room = Instantiate(rooms[2], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 270);
-                Instantiate(rooms[2], transform.position, rotation);
+                room = Instantiate(rooms[2], transform.position, rotation);
                 return;
             }
         }
@@ -274,7 +279,7 @@ public class RoomType : MonoBehaviour
         }
         z = rotations[Random.Range(0, 4)];
         rotation.eulerAngles = new Vector3(x, y, z);
-        Instantiate(rooms[3], transform.position, rotation);
+        room = Instantiate(rooms[3], transform.position, rotation);
         return;
     }
 
@@ -294,7 +299,7 @@ public class RoomType : MonoBehaviour
         }
         z = rotations[Random.Range(0, 4)];
         rotation.eulerAngles = new Vector3(x, y, z);
-        Instantiate(rooms[7], transform.position, rotation);
+        room = Instantiate(rooms[7], transform.position, rotation);
         return;
     }
 
@@ -306,11 +311,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 180);
-                    Instantiate(rooms[nr], transform.position, rotation);
+                    room = Instantiate(rooms[nr], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(0, 180, 0);
-                Instantiate(rooms[nr], transform.position, rotation);
+                room = Instantiate(rooms[nr], transform.position, rotation);
                 return;
             }
             if (connections.Contains(Vector3.down))
@@ -318,22 +323,22 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 90);
-                    Instantiate(rooms[nr], transform.position, rotation);
+                    room = Instantiate(rooms[nr], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(180, 0, 270);
-                Instantiate(rooms[nr], transform.position, rotation);
+                room = Instantiate(rooms[nr], transform.position, rotation);
                 return;
             }
             if (connections.Contains(Vector3.left))
             {
                 if (Random.Range(0, 2) == 0)
                 {
-                    Instantiate(rooms[nr], transform.position, rotation);
+                    room = Instantiate(rooms[nr], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(180, 0, 0);
-                Instantiate(rooms[nr], transform.position, rotation);
+                room = Instantiate(rooms[nr], transform.position, rotation);
                 return;
             }
             else
@@ -341,11 +346,11 @@ public class RoomType : MonoBehaviour
                 if (Random.Range(0, 2) == 0)
                 {
                     rotation.eulerAngles = new Vector3(0, 0, 270);
-                    Instantiate(rooms[nr], transform.position, rotation);
+                    room = Instantiate(rooms[nr], transform.position, rotation);
                     return;
                 }
                 rotation.eulerAngles = new Vector3(180, 0, 90);
-                Instantiate(rooms[nr], transform.position, rotation);
+                room = Instantiate(rooms[nr], transform.position, rotation);
                 return;
             }
         }

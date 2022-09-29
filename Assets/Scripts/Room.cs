@@ -6,4 +6,5 @@ public class Room : MonoBehaviour
 {
     public RoomTemplateType type;
     public EventType eventType = EventType.Empty;
+    public bool mainPath;
 }

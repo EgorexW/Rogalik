@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
 
+    [SerializeField] int startLevel = 1;
     public int level { get; private set; } = 1;
 
     private void Awake()
@@ -15,9 +16,10 @@ public class GameManager : MonoBehaviour
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
-        } else {
-            instance = this;
+            return;
         }
+        instance = this;
+        level = startLevel;
         DontDestroyOnLoad(gameObject);
     }
 

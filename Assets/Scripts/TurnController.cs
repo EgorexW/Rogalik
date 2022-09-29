@@ -59,6 +59,9 @@ public class TurnController : MonoBehaviour
     }
 
     void Update(){
+        if (player == null){
+            return;
+        }
         timeToNextTurn -= Time.deltaTime;
         if (turnEnded && timeToNextTurn <= 0){
             StartCoroutine(NextTurn());

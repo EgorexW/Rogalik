@@ -97,6 +97,10 @@ public class LevelGeneration : MonoBehaviour
             }
         }
         room.GetComponent<RoomType>().roomType = 3;
+        foreach (GameObject mainRoom in path)
+        {
+            mainRoom.GetComponent<RoomType>().mainPath = true;
+        }
     }
 
     void GenerateSidePaths()
