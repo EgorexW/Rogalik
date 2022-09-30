@@ -17,4 +17,6 @@ MonoBehaviour:
   - {fileID: 11400000}
   foes:
   - {fileID: 11400000, guid: 77d97038e3a634d6dac4cf17e1be210f, type: 2}
-  neutral: []
+  neutral:
+  - {fileID: 11400000, guid: e52e7868d4c0f41fa9c8f1082236ef75, type: 2}
+  turn: 5

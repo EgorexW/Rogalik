@@ -13,7 +13,7 @@ public class PlayerMain : MonoBehaviour
     [SerializeField] PlayerMovement pM;
 
 
-    private void Awake()
+    void Start()
     {
         if (instance != null && instance != this)
         {
@@ -23,7 +23,7 @@ public class PlayerMain : MonoBehaviour
             instance.pM.Start();
             Destroy(gameObject);
         } else {
-            transform.parent = null;
+            transform.SetParent(null);
             instance = this;
             DontDestroyOnLoad(gameObject);
         }

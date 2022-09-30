@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c49e6bf4227e42a1b126e640841ebf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moved: 0
   onTurn: 1
   isPlayer: 0
   health: 2
@@ -114,6 +113,7 @@ MonoBehaviour:
   attack: {fileID: 5502847532555805754}
   shieldDrop: 0
   shieldRange: 0
+  drop: {fileID: 6629716894996324183, guid: 507185f15183c7a4baa20d7efc59caf6, type: 3}
 --- !u!114 &5845305234624959285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   moveLayer:
     serializedVersion: 2
     m_Bits: 328
+  rotate: 1
 --- !u!114 &5446725745638845251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af60db1d718f348e2b61a99bf7fc2a96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
   sphereRange: 4
   effect: 3
 --- !u!61 &6054999179606841118

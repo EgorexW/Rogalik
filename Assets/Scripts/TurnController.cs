@@ -31,6 +31,7 @@ public class TurnController : MonoBehaviour
     IEnumerator NextTurn(){
         currentTurn += 1;
         turnEnded = false;
+        timeToNextTurn = turnsBreak;
         if (currentTurn == nrTurns){
             currentTurn = 0;
         }
@@ -38,17 +39,20 @@ public class TurnController : MonoBehaviour
             yield return PlayerTurn();
             timeToNextTurn = turnsBreak;
             turnEnded = true;
+            yield break;
         }
-        else {
-            foreach (CharacterObject character in getList(currentTurn)){
-                if (Vector2.Distance(player.transform.position, character.transform.position) <= activateDis){
-                    if (character.PlayTurn()){
-                        yield return new WaitForSeconds(turnsInterval);
-                    }
+        CharacterObject[] charactersTmp = getList(currentTurn).ToArray();
+        if (charactersTmp.Length == 0){
+            yield return NextTurn();
+            yield break;
+        }
+        foreach (CharacterObject character in charactersTmp){
+            if (Vector2.Distance(player.transform.position, character.transform.position) <= activateDis){
+                if (character.PlayTurn()){
+                    yield return new WaitForSeconds(turnsInterval);
                 }
             }
         }
-        timeToNextTurn = turnsBreak;
         turnEnded = true;
     }
 
@@ -85,6 +89,9 @@ public class TurnController : MonoBehaviour
             player = gObject;
             playerTurn = turn;
             return;
+        }
+        if (turn + 1 > nrTurns){
+            nrTurns = turn + 1;
         }
         getList(turn).Add(gObject);
     }

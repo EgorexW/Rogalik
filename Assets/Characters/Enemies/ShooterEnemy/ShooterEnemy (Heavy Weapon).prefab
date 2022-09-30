@@ -195,7 +195,7 @@ MonoBehaviour:
   maxHealth: 0
   team: {fileID: 11400000, guid: 77d97038e3a634d6dac4cf17e1be210f, type: 2}
   statusEffects: 
-  resistance: -20
+  resistance: -10
   movement: {fileID: 5845305234624959285}
   targeting: {fileID: 8024649573061687210}
   attack: {fileID: -6354371102959841278}

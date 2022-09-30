@@ -7,6 +7,8 @@ public class AIMovement : MonoBehaviour
     static EnemyCollection enemyCollection = new EnemyCollection();
     private WorldGridMap pathFind;
     public LayerMask moveLayer;
+
+    [SerializeField] bool rotate = true;
     
     void Start(){
         GameObject[] paths = GameObject.FindGameObjectsWithTag("WorldGridMap");
@@ -24,7 +26,9 @@ public class AIMovement : MonoBehaviour
             if (Physics2D.OverlapCircle(toMove, 0.1f, moveLayer) == null){
                 Vector2 dir = new Vector2(toMove.x - transform.position.x, toMove.y - transform.position.y);
                 transform.position = toMove;
-                transform.rotation = enemyCollection.Rotate(dir);
+                if (rotate){
+                    transform.rotation = enemyCollection.Rotate(dir);   
+                }   
             }
         }
     }

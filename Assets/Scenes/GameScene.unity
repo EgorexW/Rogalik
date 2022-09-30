@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nrTurns: 2
   turnsInterval: 0.1
-  turnsBreak: 0.075
+  turnsBreak: 0.1
   activateDis: 15
 --- !u!4 &692313911
 Transform:
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   - {fileID: 369021852}
   - {fileID: 1503047796}
   - {fileID: 424707090}
-  roomLenght: 12
+  roomLenght: 15
   generating: 1
   pathMin: 7
   pathMax: 12

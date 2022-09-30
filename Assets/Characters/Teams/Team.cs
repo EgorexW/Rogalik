@@ -9,6 +9,8 @@ public class Team : ScriptableObject
     public List<Team> foes = new List<Team>();
     public List<Team> neutral = new List<Team>();
 
+    public int turn;
+
     void Awake(){
         if (!friends.Contains(this)){
             friends.Add(this);

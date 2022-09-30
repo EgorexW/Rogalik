@@ -114,6 +114,13 @@ public class Pathfinding {
         // Up
         if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
+        for (int i = 0; i < neighbourList.Count; i++) {
+            PathNode temp = neighbourList[i];
+            int randomIndex = Random.Range(i, neighbourList.Count);
+            neighbourList[i] = neighbourList[randomIndex];
+            neighbourList[randomIndex] = temp;
+        }
+
         return neighbourList;
     }
 

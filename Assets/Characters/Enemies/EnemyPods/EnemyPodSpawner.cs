@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class EnemyPodSpawner : MonoBehaviour
 {
+
+    [SerializeField] int size;
+
     public void Spawn(EnemyPod enemyPod){
-        int size = enemyPod.enemies.Count;
         List<Vector2> avaliableLocations = new List<Vector2>();
         List<Vector2> locations = new List<Vector2>();
         float x = transform.position.x - (size - 1)/2;

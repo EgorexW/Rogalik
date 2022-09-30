@@ -13,6 +13,8 @@ public class AIMain : CharacterObject
     [SerializeField]
     protected int shieldRange;
 
+    [SerializeField] GameObject drop;
+
     void Start(){
         Register();
         // StatusIcon.Create(transform, true, StatusEffect.Sharpened);
@@ -26,6 +28,11 @@ public class AIMain : CharacterObject
             if (character.GetComponent<CharacterObject>().isPlayer && Vector3.Distance(transform.position, character.transform.position) <= shieldRange){
                 character.GetComponent<PlayerInput>().GiveShield(shieldDrop);       
             }
+        }
+        if (drop != null){
+            GameObject item = Instantiate(drop, transform.position, Quaternion.identity);
+            item.GetComponent<SpriteRenderer>().enabled = true;
+            item.GetComponent<BoxCollider2D>().enabled = true;
         }
         base.Die();
     }

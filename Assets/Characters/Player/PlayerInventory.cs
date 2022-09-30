@@ -87,7 +87,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     void Drop(GameObject item){
-        item.transform.parent = transform.parent;
+        item.transform.SetParent(null);
         item.GetComponent<SpriteRenderer>().enabled = true;
         item.GetComponent<BoxCollider2D>().enabled = true;
         item.transform.rotation = Quaternion.identity;
