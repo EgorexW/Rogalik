@@ -113,6 +113,7 @@ MonoBehaviour:
   attack: {fileID: 3600217391472069473}
   shieldDrop: 0
   shieldRange: 0
+  drop: {fileID: 0}
 --- !u!114 &5845305234624959285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ MonoBehaviour:
   charLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  seeRange: 8
+  seeRange: 10
 --- !u!114 &3600217391472069473
 MonoBehaviour:
   m_ObjectHideFlags: 0

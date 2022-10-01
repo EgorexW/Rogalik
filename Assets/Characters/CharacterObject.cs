@@ -18,6 +18,8 @@ public class CharacterObject : MonoBehaviour
 
     [SerializeField] protected int resistance;
 
+    protected bool getsStunned = true;
+
     public void Awake(){
         if (maxHealth == 0){
             maxHealth = health;
@@ -44,7 +46,7 @@ public class CharacterObject : MonoBehaviour
         dmg = StatusEffects.OnHit(gameObject, dmg);
         DamagePopup.Create(transform.position, dmg.damage, dmg.crit);
         health -= dmg.damage;
-        if (dmg.crit){
+        if (dmg.crit && getsStunned){
             ApplyStatusEffect(StatusEffect.Stunned);
         }
         if (health <= 0){

@@ -145,7 +145,7 @@ MonoBehaviour:
   charLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  seeRange: 12
+  seeRange: 15
 --- !u!114 &5502847532555805754
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -73,15 +73,15 @@ public class EnemyPodsGenerator : MonoBehaviour
         foreach(GameObject room in toUse) {
             List<Vector2> avaliableLocations = new List<Vector2>();
             List<Vector2> locations = new List<Vector2>();
-            float x = room.transform.position.x - roomSize/2 + 0.5f + spawnOffset;
-            float y = room.transform.position.y - roomSize/2 + 0.5f + spawnOffset;
+            float x = room.transform.position.x - roomSize/2 + spawnOffset;
+            float y = room.transform.position.y - roomSize/2 + spawnOffset;
             while(y <= room.transform.position.y + roomSize/2 - spawnOffset){
                 // Debug.Log(x + ":" + y);
                 locations.Add(new Vector2(x, y));
                 x ++;
                 if (x > room.transform.position.x + roomSize/2 - spawnOffset)
                 {
-                    x = room.transform.position.x - roomSize/2 + 0.5f + spawnOffset;
+                    x = room.transform.position.x - roomSize/2 + spawnOffset;
                     y ++;
                 }
             }

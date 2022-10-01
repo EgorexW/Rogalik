@@ -273,18 +273,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78251c6c10805a64fad78caf6bdf6725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moved: 0
   onTurn: 1
   isPlayer: 0
   health: 3
   maxHealth: 0
   team: {fileID: 11400000, guid: 77d97038e3a634d6dac4cf17e1be210f, type: 2}
   statusEffects: 
+  resistance: 0
   movement: {fileID: 5845305234624959285}
   targeting: {fileID: 8024649573061687210}
   attack: {fileID: -6354371102959841278}
   shieldDrop: 1
   shieldRange: 10
+  drop: {fileID: 0}
 --- !u!114 &8024649573061687210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ MonoBehaviour:
   charLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  seeRange: 10
+  seeRange: 12
 --- !u!114 &5845305234624959285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +317,7 @@ MonoBehaviour:
   moveLayer:
     serializedVersion: 2
     m_Bits: 328
+  rotate: 1
 --- !u!114 &-6354371102959841278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +448,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1556430534583375961}
     m_Modifications:
+    - target: {fileID: 1464228535615676178, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
+      propertyPath: critChance
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7980874424524651240, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -46,4 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 1923796335590504829, guid: 5eda0e9fcea0222489af516d29c2486a, type: 3}
+  - {fileID: 1923796335590504829, guid: 7dc2f3746bef9423e8d339a948384326, type: 3}
+  rotate: 0
   mainPath: 0

@@ -189,7 +189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78251c6c10805a64fad78caf6bdf6725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moved: 0
   onTurn: 1
   isPlayer: 0
   health: 5
@@ -202,6 +201,7 @@ MonoBehaviour:
   attack: {fileID: -6354371102959841278}
   shieldDrop: 2
   shieldRange: 10
+  drop: {fileID: 0}
 --- !u!114 &8024649573061687210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   charLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  seeRange: 10
+  seeRange: 12
 --- !u!114 &5845305234624959285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +233,7 @@ MonoBehaviour:
   moveLayer:
     serializedVersion: 2
     m_Bits: 328
+  rotate: 1
 --- !u!114 &-6354371102959841278
 MonoBehaviour:
   m_ObjectHideFlags: 0

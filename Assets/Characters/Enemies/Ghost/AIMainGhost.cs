@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AIMainGhost : AIAggressiveMain
 {
+    new void Start(){
+        getsStunned = false;
+        base.Start();
+    }
+
+
     public override Damage Damage(Damage dmg)
     {
         if (!dmg.crit){

@@ -77,14 +77,14 @@ public class EventsGenerator : MonoBehaviour
         int barrelsPlaced = 0;
         List<Vector2> avaliableLocations = new List<Vector2>();
         List<Vector2> locations = new List<Vector2>();
-        float x = room.transform.position.x - roomLenght/2 + 0.5f;
-        float y = room.transform.position.y - roomLenght/2 + 0.5f;
+        float x = room.transform.position.x - roomLenght/2;
+        float y = room.transform.position.y - roomLenght/2;
         while(y <= room.transform.position.y + roomLenght/2){
             locations.Add(new Vector2(x, y));
             x ++;
             if (x > room.transform.position.x + roomLenght/2)
             {
-                x = room.transform.position.x - roomLenght/2 + 0.5f;
+                x = room.transform.position.x - roomLenght/2;
                 y ++;
             }
         }

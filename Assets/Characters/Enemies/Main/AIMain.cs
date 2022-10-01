@@ -15,7 +15,7 @@ public class AIMain : CharacterObject
 
     [SerializeField] GameObject drop;
 
-    void Start(){
+    protected void Start(){
         Register();
         // StatusIcon.Create(transform, true, StatusEffect.Sharpened);
     }

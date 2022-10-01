@@ -47,4 +47,5 @@ MonoBehaviour:
   objects:
   - {fileID: 2438250136949759170, guid: cdf34d7eb2c36433692971e4361452ba, type: 3}
   - {fileID: 2438250136949759170, guid: fd2c68d232989405dbfbe6fdb0efd3b7, type: 3}
+  - {fileID: 2438250136949759170, guid: bf58f2b35c9984a43aceb4a7a7bf307f, type: 3}
   rotate: 1
