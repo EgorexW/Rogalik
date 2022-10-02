@@ -64,6 +64,10 @@ public class CharacterObject : MonoBehaviour
         StatusEffects.GetStatusCheck(gameObject, status);
     }
 
+    public virtual void RemoveStatusEffect(StatusEffect status){
+        statusEffects.Remove(status);
+    }
+
     protected virtual void Die(){
         Destroy(gameObject);
         turnController.UnregisterObjectInTurn(GetComponent<CharacterObject>().onTurn, this);
@@ -78,6 +82,8 @@ public class CharacterObject : MonoBehaviour
     }
 
     public int GetResistance(){
-        return resistance;
+        int resistanceTmp = resistance;
+        resistanceTmp += StatusEffects.GetResistanceMod(gameObject);
+        return resistanceTmp;
     }
 }

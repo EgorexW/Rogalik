@@ -2,8 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public struct WeaponDamageMod
+{
+    public WeaponDamageMod(int damageMod = 0, int critChanceMod = 0, int critDamageMod = 0){
+        this.damageMod = damageMod;
+        this.critChanceMod = critChanceMod;
+        this.critDamageMod = critDamageMod;
+    }
+
+    public int damageMod;
+    public int critChanceMod;
+    public int critDamageMod;
+}
 public class Weapon : MonoBehaviour
 {
+    public string displayName;
+
     public int fireRange;
     [SerializeField] int damage;
     [SerializeField] int critChance;
@@ -14,10 +28,11 @@ public class Weapon : MonoBehaviour
     public Sprite sprite;
     public WeaponTypes weaponType;
     
-    public virtual string Fire(Vector2 dir, int damageMod = 0){
+    public virtual string Fire(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
         if (ammo <= 0){
             return "Miss";
         }
+        int dmg = damage;
         RaycastHit2D raycats = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
         ammo --;
         if (raycats.transform == null){
@@ -25,10 +40,12 @@ public class Weapon : MonoBehaviour
         }
         if (raycats.transform.tag == "Player" || raycats.transform.tag == "Character"){
             bool crit = false;
-            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().GetResistance()){
+            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().GetResistance() + weaponDamageMod.critChanceMod){
                 crit = true;
+                dmg += weaponDamageMod.critDamageMod;
             }
-            raycats.transform.GetComponent<CharacterObject>().Damage(new Damage(damage + damageMod, crit));
+            dmg += weaponDamageMod.damageMod;
+            raycats.transform.GetComponent<CharacterObject>().Damage(new Damage(dmg, crit));
             if (raycats.transform == null){
                 return "Kill";
             }

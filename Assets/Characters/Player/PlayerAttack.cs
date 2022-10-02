@@ -10,9 +10,9 @@ public class PlayerAttack : MonoBehaviour
     PlayerInventory PI;
 
     public void UseWeapon(){
-        int damageMod = 0;
+        WeaponDamageMod damageMod = StatusEffects.GetDamageMod(gameObject);
         if (GetComponent<PlayerInput>().rotated){
-            damageMod -= 1;
+            damageMod.damageMod -= 1;
         }
         PI.GetWeapon().GetComponent<Weapon>().Fire(PM.dir, damageMod);
         PI.UpdateInventoryUI();

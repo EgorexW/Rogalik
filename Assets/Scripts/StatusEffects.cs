@@ -7,7 +7,10 @@ public enum StatusEffect
     Stunned,
     Sharpened,
     Protected,
-    Shielded
+    Shielded,
+    Marksman,
+    Armored,
+    Aim
 }
 
 public static class StatusEffects
@@ -58,7 +61,45 @@ public static class StatusEffects
                     statusEffects.Add(status);
                 }
                 break;
+            case StatusEffect.Marksman:
+                if (!statusEffects.Contains(status)){
+                    statusEffects.Add(status);
+                }
+                break;
+            case StatusEffect.Armored:
+                if (!statusEffects.Contains(status)){
+                    statusEffects.Add(status);
+                }
+                break;
+            case StatusEffect.Aim:
+                if (!statusEffects.Contains(status)){
+                    StatusIcon.Create(gameObject.transform, true, status);
+                }
+                statusEffects.Add(status);
+                break;
         }
+    }
+
+    public static WeaponDamageMod GetDamageMod(GameObject gameObject){
+        WeaponDamageMod weaponDamageMod = new WeaponDamageMod();
+        List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
+        if (statusEffects.Contains(StatusEffect.Marksman)){
+            weaponDamageMod.critDamageMod += 1;
+        }
+        if (statusEffects.Contains(StatusEffect.Aim)){
+            weaponDamageMod.critChanceMod += 80;
+            statusEffects.Remove(StatusEffect.Aim);
+        }
+        return weaponDamageMod;
+    }
+
+    public static int GetResistanceMod(GameObject gameObject){
+        int resistanceMod = 0;
+        List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
+        if (statusEffects.Contains(StatusEffect.Armored)){
+            resistanceMod += 30;
+        }
+        return resistanceMod;
     }
 
     public static Damage OnHit(GameObject gameObject, Damage dmg){

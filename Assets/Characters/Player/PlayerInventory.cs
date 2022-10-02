@@ -35,8 +35,8 @@ public class PlayerInventory : MonoBehaviour
     }
     
     public void UpdateInventoryUI(){
-        WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.name, firstWeapon.GetComponent<Weapon>().ammo);
-        WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.name, secondWeapon.GetComponent<Weapon>().ammo);
+        WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.GetComponent<Weapon>().displayName, firstWeapon.GetComponent<Weapon>().ammo);
+        WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.GetComponent<Weapon>().displayName, secondWeapon.GetComponent<Weapon>().ammo);
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] != null){
@@ -78,6 +78,7 @@ public class PlayerInventory : MonoBehaviour
                 items[items.Length - 1] = item;
 
             }
+            item.GetComponent<Item>().OnEquip(gameObject);
         }
         UpdateInventoryUI();
     }
@@ -87,6 +88,9 @@ public class PlayerInventory : MonoBehaviour
     }
 
     void Drop(GameObject item){
+        if (item.tag == "item"){
+            item.GetComponent<Item>().OnDrop(gameObject);
+        }
         item.transform.SetParent(null);
         item.GetComponent<SpriteRenderer>().enabled = true;
         item.GetComponent<BoxCollider2D>().enabled = true;
@@ -98,12 +102,15 @@ public class PlayerInventory : MonoBehaviour
 
     public bool UseItem(int itemNr){
         bool moveMade = false;
-        if (items[itemNr] == null){
+        GameObject item = items[itemNr];
+        if (item == null){
             return false;
         }
-        moveMade = items[itemNr].GetComponent<Item>().Use(gameObject);
-        items[itemNr] = null;
-        UpdateInventoryUI();
+        moveMade = item.GetComponent<Item>().Use(gameObject);
+        if (item.GetComponent<Item>().DestroyOnUse()){
+            items[itemNr] = null;
+            UpdateInventoryUI();
+        }
         return moveMade;
     }
 }

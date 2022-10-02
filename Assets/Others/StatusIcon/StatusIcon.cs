@@ -9,6 +9,7 @@ public class StatusIcon : MonoBehaviour
     [SerializeField] Sprite sharpenedSprite;
     [SerializeField] Sprite protectedSprite;
     [SerializeField] Sprite shieldedSprite;
+    [SerializeField] Sprite aimSprite;
 
 
     [SerializeField] LayerMask iconsLayer;
@@ -33,6 +34,8 @@ public class StatusIcon : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = protectedSprite;
         } else if (statusEffect == StatusEffect.Shielded){
             GetComponent<SpriteRenderer>().sprite = shieldedSprite;
+        } else if (statusEffect == StatusEffect.Aim){
+            GetComponent<SpriteRenderer>().sprite = aimSprite;
         }
 
         parent = parentTmp;

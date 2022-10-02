@@ -18,6 +18,12 @@ public enum EventType{
     Explosive
 }
 
+public enum ItemType
+{
+    Item,
+    Gear
+}
+
 public enum RoomTemplateType{
     Enter,
     Exit,

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1af0499150a3c845bea4d77fda6b915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Pistol
   fireRange: 8
   damage: 1
   critChance: 40

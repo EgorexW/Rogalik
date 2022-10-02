@@ -7,8 +7,14 @@ public class Cover : Item
 
     [SerializeField] bool useMove;
 
+    [SerializeField] StatusEffect status;
+
+    [SerializeField] int nrOfEffects = 1;
+
     public override bool Use(GameObject user){
-        user.GetComponent<CharacterObject>().ApplyStatusEffect(StatusEffect.Protected);
+        for (int i = 0; i < nrOfEffects; i++){
+            user.GetComponent<CharacterObject>().ApplyStatusEffect(status);
+        }
         return useMove;
     }
 }

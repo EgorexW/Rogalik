@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2868709cddc9a0c488b7eb00f0ed5e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moved: 0
   onTurn: 0
   isPlayer: 0
   health: 1
@@ -108,15 +107,23 @@ MonoBehaviour:
   resistance: 0
   lootTable:
   - value: {fileID: 8601603496818850289, guid: 4046b3b9c53470f40ab1cead91a6c05d, type: 3}
-    chance: 10
+    chance: 5
   - value: {fileID: 8601603496818850289, guid: 7eb1ad7027fca79478eb02afb513f1d8, type: 3}
-    chance: 20
+    chance: 5
   - value: {fileID: 8601603496818850289, guid: ee1a6b2809deaf946b751586c759b3f9, type: 3}
-    chance: 30
+    chance: 20
   - value: {fileID: 6629716894996324183, guid: 30a76af676e3feb47a231ee00a5fa1df, type: 3}
-    chance: 40
-  - value: {fileID: 6629716894996324183, guid: 507185f15183c7a4baa20d7efc59caf6, type: 3}
     chance: 50
+  - value: {fileID: 6629716894996324183, guid: 507185f15183c7a4baa20d7efc59caf6, type: 3}
+    chance: 30
+  - value: {fileID: 6629716894996324183, guid: 638232552917c4362a15e97876d01b32, type: 3}
+    chance: 20
+  - value: {fileID: 8601603496818850289, guid: cec58a8d62aaf473ea7d7d1ebfcc4228, type: 3}
+    chance: 40
+  - value: {fileID: 6629716894996324183, guid: f777f6b7ddbf94b2a8e712374dc1ed15, type: 3}
+    chance: 20
+  - value: {fileID: 6629716894996324183, guid: 37ec6b77450ba45ee9f6f01fad0c6711, type: 3}
+    chance: 30
 --- !u!61 &123652501212549282
 BoxCollider2D:
   m_ObjectHideFlags: 0
