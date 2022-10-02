@@ -124,6 +124,8 @@ MonoBehaviour:
     chance: 20
   - value: {fileID: 6629716894996324183, guid: 37ec6b77450ba45ee9f6f01fad0c6711, type: 3}
     chance: 30
+  - value: {fileID: 8601603496818850289, guid: c23a187188beb432ba14ba23917bed7f, type: 3}
+    chance: 30
 --- !u!61 &123652501212549282
 BoxCollider2D:
   m_ObjectHideFlags: 0
