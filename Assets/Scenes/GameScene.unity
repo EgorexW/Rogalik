@@ -1338,7 +1338,7 @@ MonoBehaviour:
   podsMin: 3
   mainPathDistribiution: 0.4
   podsMax: 5
-  chestMin: 0
+  chestMin: 1
   chestMax: 3
   roomSize: 15
   spawnOffset: 5
@@ -3145,8 +3145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1272aea1a40579d4a9e79968833866d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xWorldSize: 62
-  yWorldSize: 62
+  xWorldSize: 77
+  yWorldSize: 77
   layerMask:
     serializedVersion: 2
     m_Bits: 264

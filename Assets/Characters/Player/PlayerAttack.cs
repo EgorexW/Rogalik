@@ -14,7 +14,9 @@ public class PlayerAttack : MonoBehaviour
         if (GetComponent<PlayerInput>().rotated){
             damageMod.damageMod -= 1;
         }
-        PI.GetWeapon().GetComponent<Weapon>().Fire(PM.dir, damageMod);
+        if (PI.GetWeapon() != null){
+            PI.GetWeapon().GetComponent<Weapon>().Fire(PM.dir, damageMod);
+        }
         PI.UpdateInventoryUI();
     }
 }

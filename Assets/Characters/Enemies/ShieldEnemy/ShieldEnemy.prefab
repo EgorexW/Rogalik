@@ -113,7 +113,7 @@ MonoBehaviour:
   attack: {fileID: 5502847532555805754}
   shieldDrop: 0
   shieldRange: 0
-  drop: {fileID: 6629716894996324183, guid: 507185f15183c7a4baa20d7efc59caf6, type: 3}
+  drop: {fileID: 8601603496818850289, guid: c23a187188beb432ba14ba23917bed7f, type: 3}
 --- !u!114 &5845305234624959285
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
             return true;
         } else if (moveDetection.tag == "Respawn"){
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(false);
+        } else if (moveDetection.tag == "Character"){
+            moveDetection.GetComponent<CharacterObject>().Damage(new Damage(1, false));
+            return true;
         }
         return false;
     }

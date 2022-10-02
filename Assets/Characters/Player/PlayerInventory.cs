@@ -35,8 +35,12 @@ public class PlayerInventory : MonoBehaviour
     }
     
     public void UpdateInventoryUI(){
-        WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.GetComponent<Weapon>().displayName, firstWeapon.GetComponent<Weapon>().ammo);
-        WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.GetComponent<Weapon>().displayName, secondWeapon.GetComponent<Weapon>().ammo);
+        if (firstWeapon != null){
+            WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.GetComponent<Weapon>().displayName, firstWeapon.GetComponent<Weapon>().ammo);
+        }
+        if (secondWeapon != null){
+            WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.GetComponent<Weapon>().displayName, secondWeapon.GetComponent<Weapon>().ammo);
+        }
         for (int i = 0; i < items.Length; i++)
         {
             if (items[i] != null){
@@ -57,7 +61,9 @@ public class PlayerInventory : MonoBehaviour
         item.GetComponent<SpriteRenderer>().enabled = false;
         item.GetComponent<BoxCollider2D>().enabled = false;
         if (item.tag == "Weapon"){
-            Drop(firstWeapon);
+            if (firstWeapon != null){
+                Drop(firstWeapon);
+            }
             firstWeapon = item;
         } else if(item.tag == "Item"){
             bool added = false;

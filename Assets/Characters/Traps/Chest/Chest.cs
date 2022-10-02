@@ -7,6 +7,10 @@ public class Chest : CharacterObject
 
     [SerializeField] List<WeightedValue<GameObject>> lootTable = new List<WeightedValue<GameObject>>();
 
+    void Start(){
+        transform.rotation = Quaternion.identity;
+    }
+
     protected override void Die(){
         Loot();
     }
