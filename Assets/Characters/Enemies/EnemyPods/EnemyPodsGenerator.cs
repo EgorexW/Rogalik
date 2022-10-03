@@ -21,11 +21,24 @@ public class EnemyPodsGenerator : MonoBehaviour
 
     [SerializeField] GameObject enemyPodSpawner;
 
-    void Update(){
-        rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
-        if (rooms.Count != roomsNr){
-            return;
-        }
+    // void Update(){
+    //     rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
+    //     if (rooms.Count != roomsNr){
+    //         return;
+    //     }
+    //     foreach (GameObject room in rooms)
+    //     {
+    //         // Debug.Log(room);
+    //         if (room.GetComponent<Room>().mainPath){
+    //             roomsMain.Add(room);
+    //             // Debug.Log(room);
+    //         }
+    //     }
+    //     GeneratePods();
+    //     gameObject.GetComponent<EnemyPodsGenerator>().enabled = false;
+    // }
+
+    public void GeneratePods(List<GameObject> rooms){
         foreach (GameObject room in rooms)
         {
             // Debug.Log(room);
@@ -34,11 +47,6 @@ public class EnemyPodsGenerator : MonoBehaviour
                 // Debug.Log(room);
             }
         }
-        GeneratePods();
-        gameObject.GetComponent<EnemyPodsGenerator>().enabled = false;
-    }
-
-    void GeneratePods(){
         int level = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().level;
         int podsIncrese = (int) Mathf.Floor(podsIncresePerLevel * level);
         List<GameObject> toUse = new List<GameObject>();

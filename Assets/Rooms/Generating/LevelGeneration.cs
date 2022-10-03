@@ -17,18 +17,18 @@ public class LevelGeneration : MonoBehaviour
     public LayerMask roomLayer;
 
     private List<Vector3> directions = new List<Vector3>();
-    private List<GameObject> path = new List<GameObject>();
+    private List<GameObject> rooms = new List<GameObject>();
     private List<Vector3> removedDirections = new List<Vector3>();
     private int lenght;
     private int filledRooms;
 
 
-    void Start()
-    {
-        GenerateRooms();
-    }
+    // void Start()
+    // {
+    //     // GenerateRooms();
+    // }
 
-    void GenerateRooms()
+    public List<GameObject> GenerateRooms()
     {
         directions.Add(Vector3.right);
         directions.Add(Vector3.up);
@@ -36,7 +36,7 @@ public class LevelGeneration : MonoBehaviour
         directions.Add(Vector3.left);
 
         Generatepath();
-        filledRooms = path.Count;
+        filledRooms = rooms.Count;
 
         while (filledRooms < fillCount)
         {
@@ -49,6 +49,7 @@ public class LevelGeneration : MonoBehaviour
 
             GenerateSidePaths();
         }
+        return rooms;
     }
 
     void Generatepath()
@@ -57,7 +58,7 @@ public class LevelGeneration : MonoBehaviour
         GameObject room = startingPoints[roomNr];
         room.GetComponent<RoomType>().roomType = 2;
         transform.position = room.transform.position;
-        path.Add(room);
+        rooms.Add(room);
 
 
         while (generating)
@@ -75,7 +76,7 @@ public class LevelGeneration : MonoBehaviour
                 directions.Remove(direction);
                 removedDirections.Add(direction);
                 transform.position = previousPosition;
-                if (pathMin <= path.Count && roomDetection == null)
+                if (pathMin <= rooms.Count && roomDetection == null)
                 {
                     break;
                 }
@@ -90,14 +91,14 @@ public class LevelGeneration : MonoBehaviour
             room = roomDetection.gameObject;
             room.GetComponent<RoomType>().roomType = 1;
             room.GetComponent<RoomType>().connections.Add(-direction);
-            path.Add(room);
-            if (path.Count >= pathMax)
+            rooms.Add(room);
+            if (rooms.Count >= pathMax)
             {
                 break;
             }
         }
         room.GetComponent<RoomType>().roomType = 3;
-        foreach (GameObject mainRoom in path)
+        foreach (GameObject mainRoom in rooms)
         {
             mainRoom.GetComponent<RoomType>().mainPath = true;
         }
@@ -105,7 +106,7 @@ public class LevelGeneration : MonoBehaviour
 
     void GenerateSidePaths()
     {
-        RoomType room = path[Random.Range(0, path.Count)].GetComponent<RoomType>();
+        RoomType room = rooms[Random.Range(0, rooms.Count)].GetComponent<RoomType>();
         transform.position = room.gameObject.transform.position;
 
         if (room.connections.Count >= 4 || room.roomType == 2 || room.roomType == 3)
@@ -125,7 +126,7 @@ public class LevelGeneration : MonoBehaviour
             Vector3 direction = directions[Random.Range(0, directions.Count)];
             transform.position += roomLenght * direction;
             Collider2D roomDetection = Physics2D.OverlapCircle(transform.position, 1, roomLayer);
-            if (roomDetection == null || path.Contains(roomDetection.gameObject))
+            if (roomDetection == null || rooms.Contains(roomDetection.gameObject))
             {
                 if (directions.Count <= 1)
                 {
@@ -145,7 +146,7 @@ public class LevelGeneration : MonoBehaviour
             room = roomDetection.gameObject.GetComponent<RoomType>();
             room.roomType = 1;
             room.connections.Add(-direction);
-            path.Add(room.gameObject);
+            rooms.Add(room.gameObject);
             lenght++;
             filledRooms++;
             if (Random.Range(lenght, 6) >= Random.Range(3, 6))

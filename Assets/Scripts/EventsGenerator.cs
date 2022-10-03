@@ -19,17 +19,17 @@ public class EventsGenerator : MonoBehaviour
     [SerializeField] int barrelsMax;
     [SerializeField] GameObject barrel;
 
-    void Update(){
-        rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
-        if (rooms.Count != roomsCount){
-            return;
-        }
-        AssignEvents();
-        ExecuteEvents();
-        gameObject.GetComponent<EventsGenerator>().enabled = false;
-    }
+    // void Update(){
+    //     rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
+    //     if (rooms.Count != roomsCount){
+    //         return;
+    //     }
+    //     AssignEvents();
+    //     ExecuteEvents();
+    //     gameObject.GetComponent<EventsGenerator>().enabled = false;
+    // }
 
-    void AssignEvents(){
+    public void AssignEvents(List<GameObject> rooms){
         Vector3[] directions = {new Vector3(0, 1, 0), new Vector3(0, -1, 0), new Vector3(1, 0, 0), new Vector3(-1, 0, 0)};
         foreach (GameObject room in rooms){
             // Debug.Log(room);
@@ -62,7 +62,7 @@ public class EventsGenerator : MonoBehaviour
         }
     }
 
-    void ExecuteEvents(){
+    public void ExecuteEvents(List<GameObject> rooms){
         foreach (GameObject room in rooms){
             switch (room.GetComponent<Room>().eventType){
                 case EventType.Explosive:

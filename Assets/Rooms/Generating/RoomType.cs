@@ -15,10 +15,9 @@ public class RoomType : MonoBehaviour
     // 0 for coridors, 1 for turn, 2 for 3-ways, 3 for 4-ways, 4 for dead ends, 5 for start, 6 for exit, 7 for closed;
     public GameObject[] rooms;
 
-    void Update()
+    public void Generate()
     {
         GenerateRoom();
-        // Debug.Log(mainPath);
         room.GetComponent<RoomSpawn>().mainPath = mainPath;
         Destroy(gameObject);
     }
