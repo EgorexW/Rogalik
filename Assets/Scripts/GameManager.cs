@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
 
     private static GameManager instance;
 
-    [SerializeField] int startLevel = 1;
+    [SerializeField] int firstLevel = 1;
+
+    public bool startLevel = true;
+
     public int level { get; private set; } = 1;
 
     private void Awake()
@@ -19,7 +22,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        level = startLevel;
+        level = firstLevel;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -28,7 +31,8 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             return;
         }
-        level ++; 
+        level ++;
+        startLevel = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

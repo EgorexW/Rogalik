@@ -21,24 +21,8 @@ public class EnemyPodsGenerator : MonoBehaviour
 
     [SerializeField] GameObject enemyPodSpawner;
 
-    // void Update(){
-    //     rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
-    //     if (rooms.Count != roomsNr){
-    //         return;
-    //     }
-    //     foreach (GameObject room in rooms)
-    //     {
-    //         // Debug.Log(room);
-    //         if (room.GetComponent<Room>().mainPath){
-    //             roomsMain.Add(room);
-    //             // Debug.Log(room);
-    //         }
-    //     }
-    //     GeneratePods();
-    //     gameObject.GetComponent<EnemyPodsGenerator>().enabled = false;
-    // }
-
     public void GeneratePods(List<GameObject> rooms){
+        rooms = new List<GameObject>(rooms);
         foreach (GameObject room in rooms)
         {
             // Debug.Log(room);

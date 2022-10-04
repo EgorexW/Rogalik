@@ -49,6 +49,15 @@ public class LevelGeneration : MonoBehaviour
 
             GenerateSidePaths();
         }
+        RoomType[] roomsTmp = FindObjectsOfType<RoomType>();
+        foreach (RoomType room in roomsTmp)
+        {
+            GameObject roomG = room.gameObject;
+            if (rooms.Contains(roomG)){
+                continue;
+            }
+            rooms.Add(roomG.gameObject);
+        }
         return rooms;
     }
 

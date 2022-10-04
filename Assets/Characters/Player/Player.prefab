@@ -167,6 +167,8 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 128
+  noneSprite: {fileID: 21300000, guid: 6066a5991de9e43749de9ab1eed69273, type: 3}
+  noneName: None
 --- !u!114 &-2061886492269545963
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class GenerationManager : MonoBehaviour
         SpawnRooms(rooms);
         yield return null;
         rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
+        // Debug.Log(rooms.Count);
         eventsGenerator.AssignEvents(rooms);
         enemyPodsGenerator.GeneratePods(rooms);
         eventsGenerator.ExecuteEvents(rooms);

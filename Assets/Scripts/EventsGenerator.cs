@@ -19,21 +19,19 @@ public class EventsGenerator : MonoBehaviour
     [SerializeField] int barrelsMax;
     [SerializeField] GameObject barrel;
 
-    // void Update(){
-    //     rooms = new List<GameObject>(GameObject.FindGameObjectsWithTag("Room"));
-    //     if (rooms.Count != roomsCount){
-    //         return;
-    //     }
-    //     AssignEvents();
-    //     ExecuteEvents();
-    //     gameObject.GetComponent<EventsGenerator>().enabled = false;
-    // }
+    [SerializeField] GameObject startingChest;
 
     public void AssignEvents(List<GameObject> rooms){
         Vector3[] directions = {new Vector3(0, 1, 0), new Vector3(0, -1, 0), new Vector3(1, 0, 0), new Vector3(-1, 0, 0)};
         foreach (GameObject room in rooms){
-            // Debug.Log(room);
-            if (room.GetComponent<Room>().type == RoomTemplateType.Enter || room.GetComponent<Room>().type == RoomTemplateType.Exit){
+            // Debug.Log(room); 
+            if (room.GetComponent<Room>().type == RoomTemplateType.Enter){
+                if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().startLevel){
+                    room.GetComponent<Room>().eventType = EventType.StartingChests;
+                }
+                continue;
+            }
+            if (room.GetComponent<Room>().type == RoomTemplateType.Exit){
                 continue;
             }
             if (Random.Range(1, 1000) <= explosiveRoomChance){
@@ -63,12 +61,50 @@ public class EventsGenerator : MonoBehaviour
     }
 
     public void ExecuteEvents(List<GameObject> rooms){
+        // Debug.Log(rooms.Count);
         foreach (GameObject room in rooms){
+            // Debug.Log(room.GetComponent<Room>().type);
+            // if (room.GetComponent<Room>().type == RoomTemplateType.Enter){
+            //     Debug.Log(room.GetComponent<Room>().eventType);
+            // }
             switch (room.GetComponent<Room>().eventType){
                 case EventType.Explosive:
                     ExplosiveEvent(room);
                     break;
+                case EventType.StartingChests:
+                    StartingChestsEvent(room);
+                    break;
             }
+        }
+    }
+
+    void StartingChestsEvent(GameObject room){
+        // Debug.Log("OK");
+        List<Vector2> avaliableLocations = new List<Vector2>();
+        List<Vector2> locations = new List<Vector2>();
+        float x = room.transform.position.x - roomLenght/2 + 6;
+        float y = room.transform.position.y - roomLenght/2 + 6;
+        while(y <= room.transform.position.y + roomLenght/2 - 6){
+            locations.Add(new Vector2(x, y));
+            x ++;
+            if (x > room.transform.position.x + roomLenght/2 - 6)
+            {
+                x = room.transform.position.x - roomLenght/2 + 6;
+                y ++;
+            }
+        }
+        foreach (Vector2 location in locations)
+        {   
+            if(Physics2D.OverlapCircle(location, 0.1f) == null){
+                avaliableLocations.Add(location);
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            Vector2 location = avaliableLocations[Random.Range(0, avaliableLocations.Count)];
+            avaliableLocations.Remove(location);
+            // Debug.Log("Hwo");
+            Instantiate(startingChest, new Vector3(location.x, location.y, 0), Quaternion.identity);
         }
     }
 
@@ -97,6 +133,7 @@ public class EventsGenerator : MonoBehaviour
         while (barrelsPlaced < barrels)
         {
             Vector2 location = avaliableLocations[Random.Range(0, avaliableLocations.Count)];
+            avaliableLocations.Remove(location);
             Instantiate(barrel, new Vector3(location.x, location.y, 0), Quaternion.identity);
             barrelsPlaced ++;
         }

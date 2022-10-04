@@ -17,6 +17,9 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] LayerMask itemLayer;
 
+    [SerializeField] Sprite noneSprite;
+    [SerializeField] string noneName;
+
     int dropNr = 1;
 
     public void Start(){
@@ -37,9 +40,13 @@ public class PlayerInventory : MonoBehaviour
     public void UpdateInventoryUI(){
         if (firstWeapon != null){
             WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.GetComponent<Weapon>().displayName, firstWeapon.GetComponent<Weapon>().ammo);
+        } else {
+            WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(noneSprite, noneName, 0);
         }
         if (secondWeapon != null){
             WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.GetComponent<Weapon>().displayName, secondWeapon.GetComponent<Weapon>().ammo);
+        } else {
+            WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(noneSprite, noneName, 0);
         }
         for (int i = 0; i < items.Length; i++)
         {

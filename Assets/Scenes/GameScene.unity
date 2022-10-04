@@ -577,7 +577,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &238382596
 MonoBehaviour:
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c26239966d7764f8b69548e3e62247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstLevel: 1
   startLevel: 1
 --- !u!1 &239027538 stripped
 GameObject:
@@ -1376,7 +1377,7 @@ MonoBehaviour:
   roomLenght: 15
   blockLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 328
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -1385,6 +1386,7 @@ MonoBehaviour:
   barrelsMin: 4
   barrelsMax: 7
   barrel: {fileID: 1136089920373760386, guid: 4f28da84e1380844ebbae660a8927482, type: 3}
+  startingChest: {fileID: 5928560033951157469, guid: 786cc84c2d0d042d4bee912bb99b2444, type: 3}
 --- !u!1 &693075676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5447483164105950509, guid: e636e51570c285e4ba0a3b66193cc226, type: 3}
@@ -3856,6 +3858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ad6ebfaa7b974c508b1072c35cdb5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelGeneration: {fileID: 1008750247}
+  eventsGenerator: {fileID: 692313914}
+  enemyPodsGenerator: {fileID: 692313912}
 --- !u!4 &2088662722
 Transform:
   m_ObjectHideFlags: 0
@@ -3869,7 +3874,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115265482
 GameObject:

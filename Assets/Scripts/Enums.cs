@@ -15,7 +15,8 @@ public enum FriendOrFoe{
 }
 public enum EventType{
     Empty,
-    Explosive
+    Explosive,
+    StartingChests
 }
 
 public enum ItemType
