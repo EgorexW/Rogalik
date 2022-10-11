@@ -9,7 +9,7 @@ public class Disabler : Weapon
 
     public override GameObject Fire(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
         GameObject target = base.Fire(dir, weaponDamageMod);
-        Debug.Log(target);
+        // Debug.Log(target);
         if (target != null){
             target.GetComponent<CharacterObject>().ApplyStatusEffect(status);
         }
