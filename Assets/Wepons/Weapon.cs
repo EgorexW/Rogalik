@@ -14,6 +14,19 @@ public struct WeaponDamageMod
     public int critChanceMod;
     public int critDamageMod;
 }
+
+public struct FirePreviewReturn
+{
+    public FirePreviewReturn(int damage = 0, int critChance = 0, GameObject target = null){
+        this.damage = damage;
+        this.critChance = critChance;
+        this.target = target;
+    }
+
+    public int damage;
+    public int critChance;
+    public GameObject target;
+}
 public class Weapon : MonoBehaviour
 {
     public string displayName;
@@ -73,25 +86,16 @@ public class Weapon : MonoBehaviour
         return null;
     }
 
-    public GameObject FirePreview(Vector2 dir){
+    public FirePreviewReturn FirePreview(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
+        FirePreviewReturn defaultReturn = new FirePreviewReturn(damage, critChance, null);
         if (ammo <= 0){
-            return null;
+            return defaultReturn;
         }
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
-        Debug.DrawRay(transform.position, dir * weaponType.maxRange, Color.red, 100);
-        // Debug.Log(raycast.transform);
-        if (raycast.transform != null){
-            // Debug.Log(raycast.transform.gameObject);
-            return raycast.transform.gameObject;
-        }
-        return null;
-    }
-
-    public int CalculateCritChance(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
+        int dmg = damage;
         int critChanceTmp = critChance;
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
         if (raycast.transform == null){
-            return critChance;
+            return defaultReturn;
         }
         if (raycast.transform.tag == "Player" || raycast.transform.tag == "Character"){
             int dis = (int)raycast.distance;
@@ -100,7 +104,16 @@ public class Weapon : MonoBehaviour
             }
             critChanceTmp += weaponDamageMod.critChanceMod;
             critChanceTmp -= raycast.transform.GetComponent<CharacterObject>().GetResistance();
+            while(critChance >= 200){
+                dmg ++;
+                critChance -= 100;
+            }
+            if (critChance >= 100){
+                dmg += weaponDamageMod.critDamageMod;
+            }
+            dmg += weaponDamageMod.damageMod;
+            return new FirePreviewReturn(dmg, critChanceTmp, raycast.transform.gameObject);
         }
-        return critChanceTmp;
+        return defaultReturn;
     }
 }

@@ -12,7 +12,7 @@ public class AIAggressiveAttack : AIAttack
         if (enemyCollection.straitLineCheck(transform.position, target.transform.position) != Vector2.zero){
             Vector2 ray = enemyCollection.straitLineCheck(target.transform.position, transform.position).normalized;
             // Debug.Log(ray.normalized);
-            if (weapon.GetComponent<Weapon>().FirePreview(ray.normalized) == target){
+            if (weapon.GetComponent<Weapon>().FirePreview(ray.normalized).target == target){
                 weapon.GetComponent<Weapon>().Fire(ray.normalized);
                 transform.rotation = enemyCollection.Rotate(ray.normalized);
                 return true;

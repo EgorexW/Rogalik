@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
             PI.TargetingUI.UpdateCritChance(0);
             return;
         }
-        int critChance = PI.GetWeapon().GetComponent<Weapon>().CalculateCritChance(PM.dir, damageMod);
-        PI.TargetingUI.UpdateCritChance(critChance);
+        FirePreviewReturn firePreview = PI.GetWeapon().GetComponent<Weapon>().FirePreview(PM.dir, damageMod);
+        PI.TargetingUI.UpdateCritChance(firePreview.critChance);
     }
 }
