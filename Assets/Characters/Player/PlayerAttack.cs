@@ -19,4 +19,17 @@ public class PlayerAttack : MonoBehaviour
         }
         PI.UpdateInventoryUI();
     }
+
+    public void UpdateTargetingUI(){
+        WeaponDamageMod damageMod = StatusEffects.GetDamageMod(gameObject, true);
+        if (GetComponent<PlayerInput>().rotated){
+            damageMod.damageMod -= 1;
+        }
+        if (PI.GetWeapon() == null){
+            PI.TargetingUI.UpdateCritChance(0);
+            return;
+        }
+        int critChance = PI.GetWeapon().GetComponent<Weapon>().CalculateCritChance(PM.dir, damageMod);
+        PI.TargetingUI.UpdateCritChance(critChance);
+    }
 }

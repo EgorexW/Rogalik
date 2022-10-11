@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Fuse Pistol
-  fireRange: 8
   damage: 1
   critChance: 90
   fireLayerMask:
@@ -55,7 +54,8 @@ MonoBehaviour:
     m_Bits: 328
   ammo: 8
   sprite: {fileID: 21300000, guid: f917df0e101892e4499e9a9f2f6d97e3, type: 3}
-  weaponType: 0
+  useCritDisMod: 1
+  weaponType: {fileID: 11400000, guid: 333af73402efb467b8aa8ab01800bd16, type: 2}
 --- !u!212 &-6226299122136238408
 SpriteRenderer:
   m_ObjectHideFlags: 0

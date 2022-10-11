@@ -47,15 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Heavy Weapon
-  fireRange: 5
   damage: 5
-  critChance: 70
+  critChance: 60
   fireLayerMask:
     serializedVersion: 2
     m_Bits: 328
   ammo: 4
   sprite: {fileID: 21300000, guid: bca00ad7ab81c6f4da638c1f8161e349, type: 3}
-  weaponType: 1
+  useCritDisMod: 1
+  weaponType: {fileID: 11400000, guid: 7c3a29bbc12fa45ab832d9c818483c12, type: 2}
   shotingStatusEffect: 0
 --- !u!212 &-6226299122136238408
 SpriteRenderer:

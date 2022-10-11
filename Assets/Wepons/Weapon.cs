@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct WeaponDamageMod
 {
-    public WeaponDamageMod(int damageMod = 0, int critChanceMod = 1, int critDamageMod = 0){
+    public WeaponDamageMod(int damageMod = 0, int critChanceMod = 0, int critDamageMod = 0){
         this.damageMod = damageMod;
         this.critChanceMod = critChanceMod;
         this.critDamageMod = critDamageMod;
@@ -17,8 +17,6 @@ public struct WeaponDamageMod
 public class Weapon : MonoBehaviour
 {
     public string displayName;
-
-    public int fireRange;
     [SerializeField] int damage;
     [SerializeField] int critChance;
 
@@ -26,22 +24,46 @@ public class Weapon : MonoBehaviour
 
     public int ammo;
     public Sprite sprite;
-    public WeaponTypes weaponType;
+    [SerializeField] bool useCritDisMod = true;
+    public WeaponType weaponType;
     
     public virtual GameObject Fire(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
         if (ammo <= 0){
             return null;
         }
         int dmg = damage;
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
+        int critChanceTmp = critChance;
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
+        // Debug.Log(weaponDamageMod.critChanceMod);
         ammo --;
         if (raycast.transform == null){
             return null;
         }
         if (raycast.transform.tag == "Player" || raycast.transform.tag == "Character"){
+            int dis = (int)raycast.distance;
+            if (useCritDisMod){
+                critChanceTmp += weaponType.GetCritDisMod(dis);
+            }
+            critChanceTmp += weaponDamageMod.critChanceMod;
             bool crit = false;
-            if (Random.Range(1, 100) <= critChance - raycast.transform.GetComponent<CharacterObject>().GetResistance() + weaponDamageMod.critChanceMod){
-                crit = true;
+            critChanceTmp -= raycast.transform.GetComponent<CharacterObject>().GetResistance();
+            while (critChanceTmp > 100){
+                // Debug.Log("While");
+                if (!crit){
+                    crit = true;
+                } else {
+                    dmg += 1;
+                }
+                critChanceTmp -= 100;
+            }
+            if (Random.Range(1, 100) <= critChanceTmp){
+                if (!crit){
+                    crit = true;
+                } else {
+                    dmg += 1;
+                }
+            }
+            if (crit){
                 dmg += weaponDamageMod.critDamageMod;
             }
             dmg += weaponDamageMod.damageMod;
@@ -55,13 +77,30 @@ public class Weapon : MonoBehaviour
         if (ammo <= 0){
             return null;
         }
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
-        Debug.DrawRay(transform.position, dir * fireRange, Color.red, 100);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
+        Debug.DrawRay(transform.position, dir * weaponType.maxRange, Color.red, 100);
         // Debug.Log(raycast.transform);
         if (raycast.transform != null){
             // Debug.Log(raycast.transform.gameObject);
             return raycast.transform.gameObject;
         }
         return null;
+    }
+
+    public int CalculateCritChance(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
+        int critChanceTmp = critChance;
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
+        if (raycast.transform == null){
+            return critChance;
+        }
+        if (raycast.transform.tag == "Player" || raycast.transform.tag == "Character"){
+            int dis = (int)raycast.distance;
+            if (useCritDisMod){
+                critChanceTmp += weaponType.GetCritDisMod(dis);
+            }
+            critChanceTmp += weaponDamageMod.critChanceMod;
+            critChanceTmp -= raycast.transform.GetComponent<CharacterObject>().GetResistance();
+        }
+        return critChanceTmp;
     }
 }

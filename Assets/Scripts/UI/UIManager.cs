@@ -8,4 +8,5 @@ public class UIManager : MonoBehaviour
     public GameObject WeaponUI2;
     public GameObject StatsUI;
     public GameObject ItemsUI;
+    public GameObject TargetingUI;
 }

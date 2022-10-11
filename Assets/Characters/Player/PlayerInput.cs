@@ -30,12 +30,14 @@ public class PlayerInput : CharacterObject
     {
         if (!startTurnCheck){
             bool moved = StatusEffects.StartTurnCheck(gameObject);
+            pA.UpdateTargetingUI();
             if (moved){
                 return moved;
             }   
             rotated = false;
             startTurnCheck = true;
         }
+        bool didSomething = true;
         bool moveMade = false;
         bool shift = Input.GetButton("Shift");
         if (Input.GetAxisRaw("Vertical") != 0) {
@@ -56,8 +58,13 @@ public class PlayerInput : CharacterObject
             moveMade = pI.UseItem(1);
         } else if (Input.GetButtonDown("Item 2") == true){
             moveMade = pI.UseItem(2);
+        } else {
+            didSomething = false;
         }
 
+        if (didSomething){
+            pA.UpdateTargetingUI();
+        }
         if (moveMade) {
             startTurnCheck = false;
         }

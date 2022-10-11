@@ -14,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
     GameObject WeaponUI1;
     GameObject WeaponUI2;
     GameObject ItemUI;
+    public TargetingUI TargetingUI;
 
     [SerializeField] LayerMask itemLayer;
 
@@ -23,10 +24,11 @@ public class PlayerInventory : MonoBehaviour
     int dropNr = 1;
 
     public void Start(){
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("GameController");
-        WeaponUI1 = gameObjects[0].GetComponent<UIManager>().WeaponUI1;
-        WeaponUI2 = gameObjects[0].GetComponent<UIManager>().WeaponUI2;
-        ItemUI = gameObjects[0].GetComponent<UIManager>().ItemsUI;
+        GameObject gameObjects = GameObject.FindGameObjectWithTag("GameController");
+        WeaponUI1 = gameObjects.GetComponent<UIManager>().WeaponUI1;
+        WeaponUI2 = gameObjects.GetComponent<UIManager>().WeaponUI2;
+        ItemUI = gameObjects.GetComponent<UIManager>().ItemsUI;
+        TargetingUI = gameObjects.GetComponent<UIManager>().TargetingUI.GetComponent<TargetingUI>();
         UpdateInventoryUI();
     }
 
@@ -40,8 +42,10 @@ public class PlayerInventory : MonoBehaviour
     public void UpdateInventoryUI(){
         if (firstWeapon != null){
             WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(firstWeapon.GetComponent<Weapon>().sprite, firstWeapon.GetComponent<Weapon>().displayName, firstWeapon.GetComponent<Weapon>().ammo);
+            TargetingUI.UpdateIdealRange(firstWeapon.GetComponent<Weapon>().weaponType.idealRange);
         } else {
             WeaponUI1.GetComponent<WeaponUI>().SetWeaponUI(noneSprite, noneName, 0);
+            TargetingUI.UpdateIdealRange(0);
         }
         if (secondWeapon != null){
             WeaponUI2.GetComponent<WeaponUI>().SetWeaponUI(secondWeapon.GetComponent<Weapon>().sprite, secondWeapon.GetComponent<Weapon>().displayName, secondWeapon.GetComponent<Weapon>().ammo);

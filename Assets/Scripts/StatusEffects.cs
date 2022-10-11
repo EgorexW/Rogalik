@@ -100,7 +100,7 @@ public static class StatusEffects
         }
     }
 
-    public static WeaponDamageMod GetDamageMod(GameObject gameObject){
+    public static WeaponDamageMod GetDamageMod(GameObject gameObject, bool test = false){
         WeaponDamageMod weaponDamageMod = new WeaponDamageMod();
         List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
         if (statusEffects.Contains(StatusEffect.Marksman)){
@@ -108,7 +108,9 @@ public static class StatusEffects
         }
         if (statusEffects.Contains(StatusEffect.Aim)){
             weaponDamageMod.critChanceMod += 80;
-            statusEffects.Remove(StatusEffect.Aim);
+            if (!test){
+                statusEffects.Remove(StatusEffect.Aim);
+            }
         }
         if (statusEffects.Contains(StatusEffect.Braced)){
             weaponDamageMod.damageMod += 2;
