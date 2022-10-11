@@ -4,7 +4,7 @@ using UnityEngine;
 
 public struct WeaponDamageMod
 {
-    public WeaponDamageMod(int damageMod = 0, int critChanceMod = 0, int critDamageMod = 0){
+    public WeaponDamageMod(int damageMod = 0, int critChanceMod = 1, int critDamageMod = 0){
         this.damageMod = damageMod;
         this.critChanceMod = critChanceMod;
         this.critDamageMod = critDamageMod;
@@ -28,42 +28,39 @@ public class Weapon : MonoBehaviour
     public Sprite sprite;
     public WeaponTypes weaponType;
     
-    public virtual string Fire(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
+    public virtual GameObject Fire(Vector2 dir, WeaponDamageMod weaponDamageMod = new WeaponDamageMod()){
         if (ammo <= 0){
-            return "Miss";
+            return null;
         }
         int dmg = damage;
-        RaycastHit2D raycats = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
         ammo --;
-        if (raycats.transform == null){
-            return "Miss";
+        if (raycast.transform == null){
+            return null;
         }
-        if (raycats.transform.tag == "Player" || raycats.transform.tag == "Character"){
+        if (raycast.transform.tag == "Player" || raycast.transform.tag == "Character"){
             bool crit = false;
-            if (Random.Range(1, 100) <= critChance - raycats.transform.GetComponent<CharacterObject>().GetResistance() + weaponDamageMod.critChanceMod){
+            if (Random.Range(1, 100) <= critChance - raycast.transform.GetComponent<CharacterObject>().GetResistance() + weaponDamageMod.critChanceMod){
                 crit = true;
                 dmg += weaponDamageMod.critDamageMod;
             }
             dmg += weaponDamageMod.damageMod;
-            raycats.transform.GetComponent<CharacterObject>().Damage(new Damage(dmg, crit));
-            if (raycats.transform == null){
-                return "Kill";
-            }
-            return "Hit";
+            raycast.transform.GetComponent<CharacterObject>().Damage(new Damage(dmg, crit));
+            return raycast.transform.gameObject;
         }
-        return "Miss";
+        return null;
     }
 
     public GameObject FirePreview(Vector2 dir){
         if (ammo <= 0){
             return null;
         }
-        RaycastHit2D raycats = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, fireRange, fireLayerMask);
         Debug.DrawRay(transform.position, dir * fireRange, Color.red, 100);
-        // Debug.Log(raycats.transform);
-        if (raycats.transform != null){
-            // Debug.Log(raycats.transform.gameObject);
-            return raycats.transform.gameObject;
+        // Debug.Log(raycast.transform);
+        if (raycast.transform != null){
+            // Debug.Log(raycast.transform.gameObject);
+            return raycast.transform.gameObject;
         }
         return null;
     }

@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         CM.transform.position += new Vector3(0, 0, -10);
     }
 
-    public bool Movement(float input, bool ver, bool onlyRotate)
+    public bool Movement(float input, bool ver, bool onlyRotate, MoveProperties moveP = new MoveProperties())
     {
         float x = 0;
         float y = 0;
@@ -38,24 +38,34 @@ public class PlayerMovement : MonoBehaviour
             PI.rotated = true;
             return false;
         }
-
+        moveP.canMove = true;
+        moveP.moveDis = 1;
+        moveP.useAction = true;
+        moveP = StatusEffects.OnMove(gameObject, moveP);
+        // Debug.Log(moveP.canMove);
+        // Debug.Log(moveP.moveDis);
+        // if (!moveP.canMove){
+        //     return moveP.useAction;
+        // }
+        // Debug.Log("Ok2");
         Vector3 targetPos = transform.position + new Vector3(x, y, 0);
 
         Collider2D moveDetection = Physics2D.OverlapCircle(targetPos, 0.1f, blockLayer);
 
         if (moveDetection == null)
         {
+            // Debug.Log("Ok3");
             transform.position += new Vector3(x, y, 0);
             CM.transform.position = transform.position;
             CM.transform.position += new Vector3(0, 0, -10);
             PM.dir = new Vector2(x, y);
             Rotate(new Vector2(x, y));
-            return true;
+            return moveP.useAction;
         } else if (moveDetection.tag == "Respawn"){
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoadLevel(false);
         } else if (moveDetection.tag == "Character"){
             moveDetection.GetComponent<CharacterObject>().Damage(new Damage(1, false));
-            return true;
+            return moveP.useAction;
         }
         return false;
     }

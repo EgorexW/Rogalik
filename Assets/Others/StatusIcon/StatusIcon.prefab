@@ -102,6 +102,8 @@ MonoBehaviour:
   protectedSprite: {fileID: 21300000, guid: 0f48e1e0a3121b24e8ca6a8bf4363250, type: 3}
   shieldedSprite: {fileID: 21300000, guid: 7ea298d614180c24594448d1fb8be6a5, type: 3}
   aimSprite: {fileID: 21300000, guid: c7e8b7efbde004ee99783d14fa552de7, type: 3}
+  bracedSprite: {fileID: 21300000, guid: 11c6b784a3ad74f9bb91c5c6712abc71, type: 3}
+  disabledSprite: {fileID: 21300000, guid: 6066a5991de9e43749de9ab1eed69273, type: 3}
   iconsLayer:
     serializedVersion: 2
     m_Bits: 4

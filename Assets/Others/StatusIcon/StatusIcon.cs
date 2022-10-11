@@ -10,6 +10,8 @@ public class StatusIcon : MonoBehaviour
     [SerializeField] Sprite protectedSprite;
     [SerializeField] Sprite shieldedSprite;
     [SerializeField] Sprite aimSprite;
+    [SerializeField] Sprite bracedSprite;
+    [SerializeField] Sprite disabledSprite;
 
 
     [SerializeField] LayerMask iconsLayer;
@@ -36,6 +38,10 @@ public class StatusIcon : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = shieldedSprite;
         } else if (statusEffect == StatusEffect.Aim){
             GetComponent<SpriteRenderer>().sprite = aimSprite;
+        } else if (statusEffect == StatusEffect.Braced){
+            GetComponent<SpriteRenderer>().sprite = bracedSprite;
+        } else if (statusEffect == StatusEffect.Disabled){
+            GetComponent<SpriteRenderer>().sprite = disabledSprite;
         }
 
         parent = parentTmp;

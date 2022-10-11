@@ -19,7 +19,14 @@ public class AIMovement : MonoBehaviour
         Move(target.transform.position);
     }
 
-    public void Move(Vector3 target){
+    public void Move(Vector3 target, MoveProperties moveP = new MoveProperties()){
+        moveP.canMove = true;
+        moveP.moveDis = 1;
+        moveP.useAction = true;
+        moveP = StatusEffects.OnMove(gameObject, moveP);
+        if (!moveP.canMove){
+            return;
+        }
         List<Vector3> path = pathFind.FindPath(transform.position, target);
         if (path != null && path.Count > 1){
             Vector3 toMove = path[1];

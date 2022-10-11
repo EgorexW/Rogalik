@@ -10,7 +10,9 @@ public enum StatusEffect
     Shielded,
     Marksman,
     Armored,
-    Aim
+    Aim,
+    Braced,
+    Disabled
 }
 
 public static class StatusEffects
@@ -30,12 +32,19 @@ public static class StatusEffects
         switch (healType){
             case HealType.Medkit:
             statusEffects.Remove(StatusEffect.Sharpened);
+            statusEffects.Remove(StatusEffect.Disabled);
             break;
         }
     }
 
     public static void GetStatusCheck(GameObject gameObject, StatusEffect status){
         List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
+        if (statusEffects.Contains(StatusEffect.Disabled)){
+            if (status == StatusEffect.Stunned){
+                statusEffects.Add(status);
+            }
+            return;
+        }
         switch (status)
         {
             case StatusEffect.Sharpened:
@@ -77,6 +86,17 @@ public static class StatusEffects
                 }
                 statusEffects.Add(status);
                 break;
+            case StatusEffect.Braced:
+                if (!statusEffects.Contains(status)){
+                    StatusIcon.Create(gameObject.transform, true, status);
+                    statusEffects.Add(status);
+                }
+                break;
+            case StatusEffect.Disabled:
+                StatusIcon.Create(gameObject.transform, true, status);
+                statusEffects.Clear();
+                statusEffects.Add(status);
+                break;
         }
     }
 
@@ -90,7 +110,18 @@ public static class StatusEffects
             weaponDamageMod.critChanceMod += 80;
             statusEffects.Remove(StatusEffect.Aim);
         }
+        if (statusEffects.Contains(StatusEffect.Braced)){
+            weaponDamageMod.damageMod += 2;
+        }
         return weaponDamageMod;
+    }
+
+    public static MoveProperties OnMove(GameObject gameObject, MoveProperties moveP = new MoveProperties()){
+        List<StatusEffect> statusEffects = gameObject.GetComponent<CharacterObject>().statusEffects;
+        if (statusEffects.Contains(StatusEffect.Braced)){
+            statusEffects.Remove(StatusEffect.Braced);
+        }
+        return moveP;
     }
 
     public static int GetResistanceMod(GameObject gameObject){
