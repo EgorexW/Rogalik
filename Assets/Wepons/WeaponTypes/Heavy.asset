@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fe3fd5ebce148b6b734666dd98b1aa, type: 3}
   m_Name: Heavy
   m_EditorClassIdentifier: 
-  idealRange: 5
+  idealRange: 4
   maxRange: 5
-  critDisMods: 00000000140000000f0000000a0000000500000000000000
+  critDisMods: 000000000f0000000a00000005000000140000000a000000

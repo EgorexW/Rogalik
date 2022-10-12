@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  TargetingUI: {fileID: 0}
   itemLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -183,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PM: {fileID: 1447920489755688474}
   PI: {fileID: -2775962809729801485}
+  markPrefab: {fileID: 878892400071195858, guid: d8f1c46ea67a74e71bbc90d1676a4713, type: 3}
 --- !u!61 &232037091651555007
 BoxCollider2D:
   m_ObjectHideFlags: 0

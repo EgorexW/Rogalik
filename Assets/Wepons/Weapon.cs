@@ -17,15 +17,17 @@ public struct WeaponDamageMod
 
 public struct FirePreviewReturn
 {
-    public FirePreviewReturn(int damage = 0, int critChance = 0, GameObject target = null){
+    public FirePreviewReturn(int damage = 0, int critChance = 0, GameObject target = null, RaycastHit2D raycast = default){
         this.damage = damage;
         this.critChance = critChance;
         this.target = target;
+        this.raycast = raycast;
     }
 
     public int damage;
     public int critChance;
     public GameObject target;
+    public RaycastHit2D raycast;
 }
 public class Weapon : MonoBehaviour
 {
@@ -94,6 +96,7 @@ public class Weapon : MonoBehaviour
         int dmg = damage;
         int critChanceTmp = critChance;
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, dir, weaponType.maxRange, fireLayerMask);
+        defaultReturn.raycast = raycast;
         if (raycast.transform == null){
             return defaultReturn;
         }
@@ -112,7 +115,7 @@ public class Weapon : MonoBehaviour
                 dmg += weaponDamageMod.critDamageMod;
             }
             dmg += weaponDamageMod.damageMod;
-            return new FirePreviewReturn(dmg, critChanceTmp, raycast.transform.gameObject);
+            return new FirePreviewReturn(dmg, critChanceTmp, raycast.transform.gameObject, raycast);
         }
         return defaultReturn;
     }

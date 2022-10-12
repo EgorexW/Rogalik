@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idealRange: 2
   maxRange: 4
-  critDisMods: 000000001e000000140000000a00000000000000
+  critDisMods: 00000000140000001e0000000a00000000000000
