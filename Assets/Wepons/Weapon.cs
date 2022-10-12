@@ -107,12 +107,14 @@ public class Weapon : MonoBehaviour
             }
             critChanceTmp += weaponDamageMod.critChanceMod;
             critChanceTmp -= raycast.transform.GetComponent<CharacterObject>().GetResistance();
-            while(critChance >= 200){
+            while(critChanceTmp >= 200){
                 dmg ++;
-                critChance -= 100;
+                critChanceTmp -= 100;
             }
-            if (critChance >= 100){
+            if (critChanceTmp >= 100){
                 dmg += weaponDamageMod.critDamageMod;
+            } else if (critChanceTmp < 0){
+                critChanceTmp = 0;
             }
             dmg += weaponDamageMod.damageMod;
             return new FirePreviewReturn(dmg, critChanceTmp, raycast.transform.gameObject, raycast);

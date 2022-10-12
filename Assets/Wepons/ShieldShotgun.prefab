@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7980874424524651240}
   - component: {fileID: -3968236660119306046}
-  - component: {fileID: 6274818331723300037}
   - component: {fileID: -6226299122136238408}
   - component: {fileID: -8658013797805865344}
   m_Layer: 7
@@ -54,31 +53,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   ammo: 4
-  sprite: {fileID: 21300000, guid: bca00ad7ab81c6f4da638c1f8161e349, type: 3}
+  sprite: {fileID: 21300000, guid: 99ba478e289b344ee97ebf9da31ffbc6, type: 3}
+  useCritDisMod: 1
   weaponType: {fileID: 11400000, guid: 333af73402efb467b8aa8ab01800bd16, type: 2}
   shieldGain: 4
---- !u!114 &6274818331723300037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8601603496818850289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3caa661abec9d784db2f0729a52ab543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayName: Heavy Weapon
-  damage: 5
-  critChance: 70
-  fireLayerMask:
-    serializedVersion: 2
-    m_Bits: 328
-  ammo: 4
-  sprite: {fileID: 21300000, guid: bca00ad7ab81c6f4da638c1f8161e349, type: 3}
-  weaponType: {fileID: 0}
-  shotingStatusEffect: 0
 --- !u!212 &-6226299122136238408
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,8 +98,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bca00ad7ab81c6f4da638c1f8161e349, type: 3}
-  m_Color: {r: 0.0141509175, g: 0.14212479, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 99ba478e289b344ee97ebf9da31ffbc6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -148,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
